@@ -57,9 +57,14 @@ module.exports = defineConfig([{
     },
 
     rules: {
+        "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
         "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
         "react-native/no-inline-styles": "warn",
-        "react-native/no-unused-styles": "warn",
+        "react-native/no-unused-styles": "error",
+        'react-native/no-color-literals': 'warn',
         "react-native/split-platform-components": "warn",
+        "react-native/sort-styles": "off",
+        "@typescript-eslint/no-require-imports": "off",
     },
 }]);
