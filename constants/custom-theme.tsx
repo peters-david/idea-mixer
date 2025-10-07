@@ -8,6 +8,23 @@ const red = "#F54B64";
 const yellow = "#F7AC61";
 const green = "#77884B";
 
+type Color = string;
+
+export type CustomTheme = {
+    colors: {
+        text: Color,
+        negative: Color,
+        neutral: Color,
+        positive: Color,
+        background0: Color,
+        background1: Color,
+        accent: {
+            from: Color,
+            to: Color,
+        },
+    },
+}
+
 const theme = {
     colors: {
         text: "white",
@@ -26,7 +43,7 @@ const theme = {
 const CustomThemeContext = createContext(theme);
 
 export const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [customTheme, setCustomTheme] = useState(theme);
+    const [customTheme, _setCustomTheme] = useState(theme);
     return <CustomThemeContext.Provider value={customTheme}>{children}</CustomThemeContext.Provider>
 }
 

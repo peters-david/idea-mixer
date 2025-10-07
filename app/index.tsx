@@ -1,6 +1,6 @@
-import { useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
 import { StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 
 export default function Overview() {
     const theme = useCustomTheme();
@@ -9,12 +9,11 @@ export default function Overview() {
     return (
         <View>
             <Text style={styles.title}>Overview</Text>
-            <Button mode="contained">Button</Button>
         </View>
     );
 }
 
-const makeStyles = (theme: any) => {
+const makeStyles = (theme: CustomTheme) => {
     return StyleSheet.create({
         title: {
             color: theme.colors.text,
