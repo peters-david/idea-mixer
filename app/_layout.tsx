@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import { PaperProvider } from 'react-native-paper';
 import 'react-native-reanimated';
 
-import { theme } from '@/constants/theme';
+import { CustomThemeProvider } from '@/constants/custom-theme';
+import { theme } from '@/constants/paper-theme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,11 +50,13 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <PaperProvider theme={theme}>
-      <Stack>
-        <Stack.Screen name="index"/>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
+      <CustomThemeProvider>
+        <Stack>
+          <Stack.Screen name="index"/>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        </Stack>
+      </CustomThemeProvider>
     </PaperProvider>
   );
 }

@@ -1,28 +1,23 @@
+import { useCustomTheme } from "@/constants/custom-theme";
 import { StyleSheet, View } from "react-native";
-import { Text, useTheme } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 
 export default function Overview() {
-    const theme = useTheme();
+    const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
     return (
         <View>
             <Text style={styles.title}>Overview</Text>
+            <Button mode="contained">Button</Button>
         </View>
     );
 }
 
 const makeStyles = (theme: any) => {
     return StyleSheet.create({
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: theme.colors.text,
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: '80%',
-    },
+        title: {
+            color: theme.colors.text,
+        },
     })
 }
