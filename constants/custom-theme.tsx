@@ -7,6 +7,7 @@ const dark1 = "#26272F";
 const red = "#F54B64";
 const yellow = "#F7AC61";
 const green = "#77884B";
+const gray = "rgba(255, 255, 255, 0.15)";
 
 type Color = string;
 
@@ -18,6 +19,7 @@ export type CustomTheme = {
         positive: Color,
         background0: Color,
         background1: Color,
+        inactive: Color,
         accent: {
             from: Color,
             to: Color,
@@ -33,6 +35,7 @@ const theme = {
         positive: green,
         background0: dark0,
         background1: dark1,
+        inactive: gray,
         accent: {
             from: accentFrom,
             to: accentTo,

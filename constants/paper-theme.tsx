@@ -5,4 +5,23 @@ export const theme = {
   colors: {
     ...DefaultTheme.colors,
   },
+  fonts: {
+    ...DefaultTheme.fonts,
+    regular: {
+      fontFamily: 'Poppins_200ExtraLight',
+      fontWeight: '200',
+    },
+    medium: {
+      fontFamily: 'Poppins_200ExtraLight',
+      fontWeight: '200',
+    },
+    light: {
+      fontFamily: 'Poppins_200ExtraLight',
+      fontWeight: '200',
+    },
+    thin: {
+      fontFamily: 'Poppins_200ExtraLight',
+      fontWeight: '200',
+    },
+  },
 };

@@ -9,3 +9,7 @@ Eslint is added for linting.
 Customize linter setup and clean some auto-generated files.
 Add a basic theme for material design library `react-native-paper` and add some custom theming.
 Add github actions for linting and testing on each push.
+
+# PR 3 (add-overview)
+Add basic overview screen. Add the Poppins font.
+Add header and entry preview component.
