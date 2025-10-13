@@ -22,7 +22,7 @@ const makeStyles = (theme: CustomTheme) => {
             overflow: "hidden",
         },
         noise: {
-            height: "10%",
+            width: "100%",
             opacity: 0.4,
             backgroundRepeat: "repeat",
             position: "absolute",
