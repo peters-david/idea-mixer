@@ -14,3 +14,6 @@ Add github actions for linting and testing on each push.
 Add basic overview screen. Add the Poppins font.
 Add the entry view screen and entry edit screen.
 Basic navigation with buttons and the back gesture are added.
+
+# PR 4 (branding)
+Add icon variations for different display positions and sizes.
