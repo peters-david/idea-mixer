@@ -33,8 +33,8 @@ const makeStyles = (theme: CustomTheme) => {
         },
         header: {
             height: "30%",
-            borderBottomLeftRadius: 30,
-            borderBottomRightRadius: 30,
+            borderBottomLeftRadius: theme.corners.radius,
+            borderBottomRightRadius: theme.corners.radius,
             overflow: "hidden",
         },
         body: {

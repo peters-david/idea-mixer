@@ -35,14 +35,14 @@ const makeStyles = (theme: CustomTheme) => {
         },
         content: {
             color: theme.colors.background2,
-            borderRadius: 30,
+            borderRadius: theme.corners.radius,
             borderWidth: 0,
         },
         border: {
             backgroundColor: theme.colors.background1,
             borderColor: theme.colors.accent.from,
             borderWidth: 2,
-            borderRadius: 30,
+            borderRadius: theme.corners.radius,
         },
         button: {
             position: "absolute",
@@ -52,7 +52,7 @@ const makeStyles = (theme: CustomTheme) => {
             paddingHorizontal: 35,
             borderWidth: 2,
             borderColor: theme.colors.accent.from,
-            borderRadius: 30,
+            borderRadius: theme.corners.radius,
             marginVertical: 1,
         },
         buttonLabel: {

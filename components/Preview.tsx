@@ -31,7 +31,7 @@ const makeStyles = (theme: CustomTheme) => {
             backgroundColor: theme.colors.background1,
             paddingHorizontal: "5%",
             paddingVertical: "3%",
-            borderRadius: 30,
+            borderRadius: theme.corners.radius,
             marginVertical: "1%",
         },
         previewUpper: {
@@ -55,7 +55,7 @@ const makeStyles = (theme: CustomTheme) => {
             marginHorizontal: "1%",
             padding: 0,
             borderColor: theme.colors.background2,
-            borderRadius: 30,
+            borderRadius: theme.corners.radius,
         },
         previewText: {
             paddingTop: "1%",

@@ -18,7 +18,6 @@ export default function Gradient ({ children }: { children: React.ReactNode }) {
 const makeStyles = (theme: CustomTheme) => {
     return StyleSheet.create({
         gradient: {
-            height: "100%",
             overflow: "hidden",
         },
         noise: {

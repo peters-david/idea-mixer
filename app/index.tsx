@@ -1,10 +1,10 @@
-import Overview from "@/components/Overview";
+import EntryView from "@/components/EntryView";
 
 export default function Startscreen() {
     return (
-        <Overview />
+        <EntryView />
     );
         {/*
-        <EntryView />
+        <Overview />
         */}
 }

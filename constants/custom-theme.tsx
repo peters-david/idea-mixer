@@ -25,6 +25,10 @@ export type CustomTheme = {
             to: Color,
         },
     },
+    corners: {
+        radius: number,
+        width: number,
+    }
 }
 
 const theme = {
@@ -41,6 +45,10 @@ const theme = {
             to: accentTo,
         },
     },
+    corners: {
+        radius: 30,
+        width: 2,
+    }
 };
 
 const CustomThemeContext = createContext(theme);
