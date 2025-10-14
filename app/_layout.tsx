@@ -13,11 +13,6 @@ export {
   ErrorBoundary
 } from 'expo-router';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -51,6 +46,8 @@ function RootLayoutNav() {
       <CustomThemeProvider>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="index"/>
+          <Stack.Screen name="view"/>
+          <Stack.Screen name="edit"/>
           {/*<Stack.Screen name="entry" options={{ something: "something" }}/> or user router file name [id].tsx*/}
         </Stack>
       </CustomThemeProvider>
