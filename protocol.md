@@ -12,4 +12,5 @@ Add github actions for linting and testing on each push.
 
 # PR 3 (add-overview)
 Add basic overview screen. Add the Poppins font.
-Add header and entry preview component.
+Add the entry view screen and entry edit screen.
+Basic navigation with buttons and the back gesture are added.

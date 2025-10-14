@@ -5,10 +5,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import { Chip, Text } from "react-native-paper";
 
 
-type Props = {
-};
-
-export default function Preview ({ }: Props) {
+export default function Preview () {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     
@@ -18,8 +15,8 @@ export default function Preview ({ }: Props) {
                 <View style={styles.previewUpper}>
                     <Text style={styles.headline}>This is the title</Text>
                     <View style={styles.concepts}>
-                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact>Concept 1</Chip>
-                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact>Concept 2</Chip>
+                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 1</Text></Chip>
+                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 2</Text></Chip>
                     </View>
                 </View>
                 <Text style={styles.previewText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</Text>

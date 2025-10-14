@@ -16,8 +16,8 @@ export default function EntryView() {
                 <Gradient>
                     <Text style={styles.title}>3d printed pots</Text>
                     <View style={styles.concepts}>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}>plants</Chip>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}>3d printing</Chip>
+                    <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>plants</Text></Chip>
+                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>3d printing</Text></Chip>
                     </View>
                 </Gradient>
             </View>

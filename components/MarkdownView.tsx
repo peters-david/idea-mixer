@@ -12,7 +12,7 @@ export default function MarkdownView() {
     
 
     const rules: RenderRules = {
-        image: (node: ASTNode, children: any, parent: any, styles: any, index) => {
+        image: (node: ASTNode, children, parent, styles, index) => {
             const attributes = node.attributes || {};
             const src = attributes.src;
             if (!src) return null;

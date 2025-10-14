@@ -1,6 +1,6 @@
 import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
 import { router } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Chip, FAB, TextInput } from "react-native-paper";
 import Gradient from "./Gradient";
 
@@ -17,10 +17,10 @@ export default function EntryEdit() {
         <View style={styles.background}>
             <View style={styles.header}>
                 <Gradient>
-                    <TextInput mode="outlined" style={styles.title} outlineStyle={styles.titleUnderline}>3d printed pots</TextInput>
+                    <TextInput mode="outlined" style={styles.title} outlineStyle={styles.titleUnderline} value="3d printed pots"></TextInput>
                     <View style={styles.concepts}>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}>plants</Chip>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}>3d printing</Chip>
+                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>plants</Text></Chip>
+                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>3d printing</Text></Chip>
                     </View>
                 </Gradient>
             </View>
