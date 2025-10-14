@@ -4,6 +4,7 @@ const accentFrom = "#6059FE";
 const accentTo = "#393598";
 const dark0 = "#17171C";
 const dark1 = "#26272F";
+const dark2 = "#4f5056";
 const red = "#F54B64";
 const yellow = "#F7AC61";
 const green = "#77884B";
@@ -18,11 +19,16 @@ export type CustomTheme = {
         positive: Color,
         background0: Color,
         background1: Color,
+        background2: Color,
         accent: {
             from: Color,
             to: Color,
         },
     },
+    corners: {
+        radius: number,
+        width: number,
+    }
 }
 
 const theme = {
@@ -33,11 +39,16 @@ const theme = {
         positive: green,
         background0: dark0,
         background1: dark1,
+        background2: dark2,
         accent: {
             from: accentFrom,
             to: accentTo,
         },
     },
+    corners: {
+        radius: 30,
+        width: 2,
+    }
 };
 
 const CustomThemeContext = createContext(theme);
