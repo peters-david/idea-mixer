@@ -1,4 +1,4 @@
-import { useIdeaIds } from "@/hooks/ideaIds";
+import { useIdeaIds } from "@/hooks/useIdeaIds";
 import Overview from "@/screens/Overview";
 import { useEffect } from "react";
 

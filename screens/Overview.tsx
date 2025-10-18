@@ -1,4 +1,5 @@
 import Preview from "@/components/Preview";
+import { useIdeaIds } from "@/hooks/useIdeaIds";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { StyleSheet, View } from "react-native";
 import OverviewHeader from "../components/OverviewHeader";
@@ -7,18 +8,17 @@ export default function Overview() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
+    const ideaIds = useIdeaIds();
+
     return (
         <View style={styles.background}>
             <View style={styles.header}>
                 <OverviewHeader/>
             </View>
             <View style={styles.body}>
-                <Preview/>
-                <Preview/>
-                <Preview/>
-                <Preview/>
-                <Preview/>
-                <Preview/>
+                {ideaIds.map((id) => (
+                    <Preview key={id} uid={id}/>
+                ))}
 
             </View>
         </View>

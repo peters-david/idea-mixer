@@ -7,7 +7,7 @@ const REPO_NAME = "idea-mixer-template";
 
 export async function addSeedData() {
     ensure_folder(APP_DIRECTORY);
-    downloadGitRecursive("", APP_DIRECTORY);
+    if (new Directory(APP_DIRECTORY).list().length == 0) downloadGitRecursive("", APP_DIRECTORY);
 }
 
 export async function downloadGitRecursive(repoPath: string, localPath: string) {
@@ -17,7 +17,7 @@ export async function downloadGitRecursive(repoPath: string, localPath: string) 
     for (const item of items) {
         const itemPath = localPath + item.name;
         if (item.type === "dir") {
-            new Directory(itemPath).create({ idempotent: true });
+            new Directory(itemPath).create({ idempotent: true, intermediates: true });
             await downloadGitRecursive(item.path, itemPath + "/");
         } else if (item.type === "file") {
             await File.downloadFileAsync(item.download_url, new File(itemPath), { idempotent: true });
@@ -27,9 +27,13 @@ export async function downloadGitRecursive(repoPath: string, localPath: string) 
     }
 }
 
+function delete_folder(path: string) {
+    new Directory(path).delete();
+}
+
 function ensure_folder(path: string) {
     const directory = new Directory(path);
     if (!directory.exists) {
-        directory.create({ idempotent: true, overwrite: false });
+        directory.create({ idempotent: true, overwrite: false, intermediates: true });
     }
 }

@@ -4,7 +4,7 @@ import { Directory } from "expo-file-system";
 import { useEffect, useState } from "react";
 
 export function useIdeaIds() {
-    const [ideaIds, setIdeaIds] = useState([""]);
+    const [ideaIds, setIdeaIds] = useState<string[]>([]);
 
     useEffect(() => {
         addSeedData();

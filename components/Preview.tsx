@@ -1,19 +1,23 @@
+import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Chip, Text } from "react-native-paper";
 
+type Props = { uid: string };
 
-export default function Preview () {
+export default function Preview (props: Props) {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
+
+    const [title, setTitle] = useIdea(props.uid);
     
     return (
         <Pressable onPress={() => router.push("/view")}>
             <View style={styles.preview}>
                 <View style={styles.previewUpper}>
-                    <Text style={styles.headline}>This is the title</Text>
+                    <Text style={styles.headline}>{title}</Text>
                     <View style={styles.concepts}>
                         <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 1</Text></Chip>
                         <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 2</Text></Chip>
