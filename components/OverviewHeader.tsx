@@ -1,4 +1,4 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import Gradient from "./Gradient";

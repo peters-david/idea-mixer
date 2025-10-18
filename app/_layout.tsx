@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { PaperProvider } from "react-native-paper";
 import 'react-native-reanimated';
 
-import { CustomThemeProvider } from '@/constants/custom-theme';
-import { theme } from '@/constants/paper-theme';
+import { CustomThemeProvider } from '@/theme/custom-theme';
+import { theme } from '@/theme/paper-theme';
 
 export {
   // Catch any errors thrown by the Layout component.

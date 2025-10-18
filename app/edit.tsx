@@ -1,6 +1,6 @@
-import EntryEdit from "@/components/EntryEdit";
+import EntryEdit from "@/screens/EntryEdit";
 
-export default function Startscreen() {
+export default function Editscreen() {
     return (
         <EntryEdit />
     );

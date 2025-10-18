@@ -1,6 +1,6 @@
-import EntryView from "@/components/EntryView";
+import EntryView from "@/screens/EntryView";
 
-export default function Startscreen() {
+export default function ViewScreen() {
     return (
         <EntryView />
     );

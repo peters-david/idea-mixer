@@ -1,4 +1,4 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";

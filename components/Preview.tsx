@@ -1,4 +1,4 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { router } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";

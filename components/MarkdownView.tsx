@@ -1,4 +1,4 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { Image } from "react-native";
 import Markdown, { ASTNode, RenderRules } from "react-native-markdown-display";
 

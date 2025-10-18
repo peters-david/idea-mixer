@@ -1,7 +1,7 @@
 import Preview from "@/components/Preview";
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { StyleSheet, View } from "react-native";
-import OverviewHeader from "./OverviewHeader";
+import OverviewHeader from "../components/OverviewHeader";
 
 export default function Overview() {
     const theme = useCustomTheme();

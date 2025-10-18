@@ -17,3 +17,6 @@ Basic navigation with buttons and the back gesture are added.
 
 # PR 4 (branding)
 Add icon variations for different display positions and sizes.
+
+# PR 5 (data-handling)
+Make it possible to download seed data from git repository.
