@@ -1,26 +1,25 @@
+import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
-import { router } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
-import { Chip, FAB, TextInput } from "react-native-paper";
+import { router, useLocalSearchParams } from "expo-router";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Chip, FAB } from "react-native-paper";
 import Gradient from "../components/Gradient";
 
 export default function EntryEdit() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
-
-
-    const t = `**Lorem ipsum** dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                [Link](https://google.com)
-                ![Pots](https://cdn.pixabay.com/photo/2017/03/27/14/33/ancient-2179091_1280.jpg)`;
+    const { uid }: { uid: string } = useLocalSearchParams();
+    const [title, _setTitle, concepts, _setConcepts, content, _setContent] = useIdea(uid);
 
     return (
         <View style={styles.background}>
             <View style={styles.header}>
                 <Gradient>
-                    <TextInput mode="outlined" style={styles.title} outlineStyle={styles.titleUnderline} value="3d printed pots"></TextInput>
+                    <TextInput style={styles.title} value={title}></TextInput>
                     <View style={styles.concepts}>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>plants</Text></Chip>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>3d printing</Text></Chip>
+                        {concepts.map((concept) => (
+                            <Chip key={concept} style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
+                        ))}
                     </View>
                 </Gradient>
             </View>
@@ -29,10 +28,10 @@ export default function EntryEdit() {
             </View>
             <View style={styles.body}>
                 <View style={styles.content}>
-                    <TextInput mode="outlined" multiline style={styles.textEdit} outlineStyle={styles.textEditOutline}>{t}</TextInput>
+                    <TextInput multiline style={styles.textEdit}>{content}</TextInput>
                 </View>
             </View>
-            <FAB icon="check-bold" style={styles.save} onPress={() => router.push("/view")} customSize={80}/>
+            <FAB icon="check-bold" style={styles.save} onPress={() => router.push(`/view/${uid}`)} customSize={80}/>
             <FAB icon="delete" style={styles.delete} onPress={() => { console.log('Delete'); router.push("/"); }} customSize={80}/>
         </View>
     );
@@ -51,13 +50,11 @@ const makeStyles = (theme: CustomTheme) => {
             marginTop: "12%",
         },
         title: {
-            backgroundColor: "transparent",
+            color: theme.colors.text,
             marginHorizontal: "10%",
             marginVertical: "5%",
+            padding: 0,
             fontSize: 28,
-        },
-        titleUnderline: {
-            borderColor: "transparent",
         },
         concepts: {
             marginHorizontal: "5%",
@@ -72,7 +69,8 @@ const makeStyles = (theme: CustomTheme) => {
         },
         conceptText: {
             fontSize: 20,
-            fontWeight: "100",
+            fontWeight: "200",
+            fontFamily: "Poppins_200ExtraLight",
             color: theme.colors.text,
         },
         body: {
@@ -84,7 +82,9 @@ const makeStyles = (theme: CustomTheme) => {
             margin: "10%",
         },
         textEdit: {
+            color: theme.colors.text,
             backgroundColor: theme.colors.background1,
+            fontSize: 18,
         },
         textEditOutline: {
             borderColor: "transparent",

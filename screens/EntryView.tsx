@@ -1,5 +1,6 @@
+import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { Chip, FAB, Text } from "react-native-paper";
 import Gradient from "../components/Gradient";
@@ -8,16 +9,19 @@ import MarkdownView from "../components/MarkdownView";
 export default function EntryView() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
+    const { uid }: { uid: string } = useLocalSearchParams();
+    const [title, _setTitle, concepts, _setConcepts, content, _setContent] = useIdea(uid);
 
 
     return (
         <View style={styles.background}>
             <View style={styles.header}>
                 <Gradient>
-                    <Text style={styles.title}>3d printed pots</Text>
+                    <Text style={styles.title}>{title}</Text>
                     <View style={styles.concepts}>
-                    <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>plants</Text></Chip>
-                        <Chip style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text>3d printing</Text></Chip>
+                        {concepts.map((concept) => (
+                            <Chip key={concept} style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
+                        ))}
                     </View>
                 </Gradient>
             </View>
@@ -26,10 +30,10 @@ export default function EntryView() {
             </View>
             <View style={styles.body}>
                 <View style={styles.content}>
-                    <MarkdownView />
+                    <MarkdownView uid={uid} content={content}/>
                 </View>
             </View>
-            <FAB icon="pencil" style={styles.edit} onPress={() => router.push("/edit")} customSize={80}/>
+            <FAB icon="pencil" style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
             <FAB icon="delete" style={styles.delete} onPress={() => { console.log('Delete'); router.push("/"); }} customSize={80}/>
         </View>
     );
@@ -48,6 +52,7 @@ const makeStyles = (theme: CustomTheme) => {
             marginTop: "12%",
         },
         title: {
+            color: theme.colors.text,
             marginHorizontal: "10%",
             marginVertical: "5%",
             fontSize: 28,
@@ -65,7 +70,8 @@ const makeStyles = (theme: CustomTheme) => {
         },
         conceptText: {
             fontSize: 20,
-            fontWeight: "100",
+            fontWeight: "200",
+            fontFamily: "Poppins_200ExtraLight",
             color: theme.colors.text,
         },
         body: {

@@ -12,8 +12,8 @@ export const theme = {
       fontWeight: '200',
     },
     medium: {
-      fontFamily: 'Poppins_200ExtraLight',
-      fontWeight: '200',
+      fontFamily: 'Poppins_400Regular',
+      fontWeight: '400',
     },
     light: {
       fontFamily: 'Poppins_200ExtraLight',

@@ -14,7 +14,7 @@ export default function Preview (props: Props) {
     const [title, setTitle] = useIdea(props.uid);
     
     return (
-        <Pressable onPress={() => router.push("/view")}>
+        <Pressable onPress={() => router.push(`/view/${props.uid}`)}>
             <View style={styles.preview}>
                 <View style={styles.previewUpper}>
                     <Text style={styles.headline}>{title}</Text>

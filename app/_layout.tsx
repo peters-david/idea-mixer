@@ -1,4 +1,4 @@
-import { Poppins_200ExtraLight, useFonts } from '@expo-google-fonts/poppins';
+import { Poppins_200ExtraLight, Poppins_400Regular, Poppins_700Bold, useFonts } from '@expo-google-fonts/poppins';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
@@ -18,7 +18,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Poppins_200ExtraLight
+    Poppins_200ExtraLight,
+    Poppins_400Regular,
+    Poppins_700Bold,
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -44,7 +46,7 @@ function RootLayoutNav() {
   return (
     <PaperProvider theme={theme}>
       <CustomThemeProvider>
-        <Stack screenOptions={{ headerShown: false }}>
+        <Stack screenOptions={{ headerShown: false, animation: "none" }}>
           <Stack.Screen name="index"/>
           <Stack.Screen name="view"/>
           <Stack.Screen name="edit"/>

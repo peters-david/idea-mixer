@@ -13,7 +13,7 @@ export default function Overview() {
     return (
         <View style={styles.background}>
             <View style={styles.header}>
-                <OverviewHeader/>
+                <OverviewHeader entries={ideaIds.length}/>
             </View>
             <View style={styles.body}>
                 {ideaIds.map((id) => (

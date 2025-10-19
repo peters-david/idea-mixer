@@ -4,14 +4,18 @@ import { Text } from "react-native-paper";
 import Gradient from "./Gradient";
 import Input from "./Input";
 
-export default function OverviewHeader() {
+type Props = {
+    entries: number
+};
+
+export default function OverviewHeader(props: Props) {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
     return (
         <Gradient>
             <View style={styles.headerContent}>
-                <Text style={styles.title}>Your currently have 6 entries</Text>
+                <Text style={styles.title}>Your currently have {props.entries} entries</Text>
                 <Input pre={require("../assets/images/search.png")} placeholder="Search ideas"/>
                 <Input pre={require("../assets/images/plus.png")} placeholder="Title" postButton="Add"/>
             </View>

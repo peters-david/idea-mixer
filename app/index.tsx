@@ -1,6 +1,8 @@
+import SeedDownload from "@/components/SeedDownload";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import Overview from "@/screens/Overview";
 import { useEffect } from "react";
+import { View } from "react-native";
 
 export default function Startscreen() {
     const ideaIds = useIdeaIds();
@@ -10,6 +12,9 @@ export default function Startscreen() {
     }, [ideaIds]);
     
     return (
-        <Overview />
+        <View>
+            <SeedDownload/>
+            <Overview />
+        </View>
     );
 }
