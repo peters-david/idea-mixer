@@ -20,3 +20,8 @@ Add icon variations for different display positions and sizes.
 
 # PR 5 (data-handling)
 Make it possible to download seed data from git repository.
+Make it possible to add, delete, modify ideas, concepts and content.
+Make ideas searchable. Show preview cleaned from markdown.
+Make images pressable for bigger view.
+Correct router navigation and back button.
+Add dynamic idea counter.

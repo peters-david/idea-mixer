@@ -28,7 +28,10 @@ export type CustomTheme = {
     corners: {
         radius: number,
         width: number,
-    }
+    },
+    font: {
+        family: string,
+    },
 }
 
 const theme = {
@@ -48,6 +51,9 @@ const theme = {
     corners: {
         radius: 30,
         width: 2,
+    },
+    font: {
+        family: "Poppins_200ExtraLight",
     }
 };
 

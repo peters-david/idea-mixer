@@ -1,17 +1,37 @@
 import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
+import { cleanMarkdown } from "@/utils/cleanMarkdown";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { Chip, Text } from "react-native-paper";
 
-type Props = { uid: string };
+type Props = { 
+    uid: string
+    showIfContains?: string;
+};
 
 export default function Preview (props: Props) {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
-    const [title, setTitle] = useIdea(props.uid);
+    const [title, _setTitle, concepts, _setConcepts, content, _setContent] = useIdea(props.uid);
+    const [preview, setPreview] = useState<string>();
+
+    const contains = (text: string) => {
+        const inTitle = title.includes(text);
+        const inConcepts = concepts.some(c => c.includes(text));
+        const inContent = content.includes(text);
+        return inTitle || inConcepts || inContent;
+    }
+
+    useEffect(() => {
+        const cleanedText = cleanMarkdown(content);
+        const previewText = cleanedText.length > 150 ? cleanedText.substring(0, 150) + "…" : cleanedText;
+        setPreview(previewText);
+    }, [content]);
+
+    if (props.showIfContains && props.showIfContains.length > 0 && !contains(props.showIfContains)) return;
     
     return (
         <Pressable onPress={() => router.push(`/view/${props.uid}`)}>
@@ -19,11 +39,12 @@ export default function Preview (props: Props) {
                 <View style={styles.previewUpper}>
                     <Text style={styles.headline}>{title}</Text>
                     <View style={styles.concepts}>
-                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 1</Text></Chip>
-                        <Chip mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text>Concept 2</Text></Chip>
+                        {concepts.map((concept) => (
+                                concept.length > 0 && <Chip key={concept} mode="outlined" textStyle={styles.conceptText} style={styles.concept} compact><Text style={styles.conceptInnerText}>{concept}</Text></Chip>
+                        ))}
                     </View>
                 </View>
-                <Text style={styles.previewText}>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</Text>
+                {preview && preview.length > 0 && <Text style={styles.previewText}>{ preview }</Text>}
             </View>
         </Pressable>
     );
@@ -43,6 +64,7 @@ const makeStyles = (theme: CustomTheme) => {
             justifyContent: "space-between",
         },
         headline: {
+            fontFamily: theme.font.family,
             fontSize: 30,
         },
         concepts: {
@@ -51,7 +73,6 @@ const makeStyles = (theme: CustomTheme) => {
         conceptText: {
             padding: 0,
             margin: 0,
-            color: theme.colors.text,
         },
         concept: {
             alignSelf: "flex-start",
@@ -61,8 +82,13 @@ const makeStyles = (theme: CustomTheme) => {
             borderColor: theme.colors.background2,
             borderRadius: theme.corners.radius,
         },
+        conceptInnerText: {
+            fontFamily: theme.font.family,
+            color: theme.colors.text,
+        },
         previewText: {
             paddingTop: "1%",
+            fontFamily: theme.font.family,
         }
     })
 }

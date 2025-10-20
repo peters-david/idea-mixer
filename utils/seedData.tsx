@@ -7,7 +7,7 @@ const REPO_NAME = "idea-mixer-template";
 
 export async function addSeedData() {
     ensure_folder(APP_DIRECTORY);
-    if (new Directory(APP_DIRECTORY).list().length == 0) downloadGitRecursive("", APP_DIRECTORY);
+    downloadGitRecursive("", APP_DIRECTORY);
 }
 
 export async function downloadGitRecursive(repoPath: string, localPath: string) {

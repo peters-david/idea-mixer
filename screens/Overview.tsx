@@ -1,6 +1,7 @@
 import Preview from "@/components/Preview";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import OverviewHeader from "../components/OverviewHeader";
 
@@ -8,16 +9,21 @@ export default function Overview() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
+    const [search, setSearch] = useState<string>();
     const ideaIds = useIdeaIds();
+
+    const onSearch = (text: string) => {
+        setSearch(text);
+    }
 
     return (
         <View style={styles.background}>
             <View style={styles.header}>
-                <OverviewHeader entries={ideaIds.length}/>
+                <OverviewHeader entries={ideaIds.length} onSearch={onSearch}/>
             </View>
             <View style={styles.body}>
                 {ideaIds.map((id) => (
-                    <Preview key={id} uid={id}/>
+                    <Preview key={id} uid={id} showIfContains={search}/>
                 ))}
 
             </View>

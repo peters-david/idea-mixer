@@ -1,5 +1,6 @@
 import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
+import { deleteIdea } from "@/utils/ideaHandling";
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { Chip, FAB, Text } from "react-native-paper";
@@ -20,13 +21,10 @@ export default function EntryView() {
                     <Text style={styles.title}>{title}</Text>
                     <View style={styles.concepts}>
                         {concepts.map((concept) => (
-                            <Chip key={concept} style={styles.concept} textStyle={styles.conceptText} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
+                            <Chip key={concept} compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
                         ))}
                     </View>
                 </Gradient>
-            </View>
-            <View>
-                {/* pictures: maybe just markdown */}
             </View>
             <View style={styles.body}>
                 <View style={styles.content}>
@@ -34,7 +32,7 @@ export default function EntryView() {
                 </View>
             </View>
             <FAB icon="pencil" style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
-            <FAB icon="delete" style={styles.delete} onPress={() => { console.log('Delete'); router.push("/"); }} customSize={80}/>
+            <FAB icon="delete" style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={80}/>
         </View>
     );
 }
@@ -52,9 +50,12 @@ const makeStyles = (theme: CustomTheme) => {
             marginTop: "12%",
         },
         title: {
+            fontFamily: theme.font.family,
             color: theme.colors.text,
-            marginHorizontal: "10%",
-            marginVertical: "5%",
+            marginHorizontal: "7%",
+            marginTop: "5%",
+            marginBottom: "2%",
+            padding: 0,
             fontSize: 28,
         },
         concepts: {
@@ -64,14 +65,15 @@ const makeStyles = (theme: CustomTheme) => {
             justifyContent: "flex-start"
         },
         concept: {
-            padding: 8,
-            marginHorizontal: 1,
+            padding: 4,
+            margin: 1,
             borderRadius: theme.corners.radius,
+            backgroundColor: theme.colors.background1,
         },
         conceptText: {
             fontSize: 20,
-            fontWeight: "200",
-            fontFamily: "Poppins_200ExtraLight",
+            lineHeight: 28,
+            fontFamily: theme.font.family,
             color: theme.colors.text,
         },
         body: {
