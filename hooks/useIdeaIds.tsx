@@ -1,5 +1,4 @@
-import { APP_DIRECTORY } from "@/constants/app-directory";
-import { Directory } from "expo-file-system";
+import { getAllIdeaUids } from "@/utils/ideaHandling";
 import { useEffect, useState } from "react";
 
 export function useIdeaIds() {
@@ -7,7 +6,7 @@ export function useIdeaIds() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const ids: string[] = new Directory(APP_DIRECTORY).list().map(e => e.name);
+            const ids = getAllIdeaUids();
             setIdeaIds(ids);
         }, 1000);
         return () => clearInterval(interval);

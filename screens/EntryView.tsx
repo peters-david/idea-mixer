@@ -31,8 +31,8 @@ export default function EntryView() {
                     <MarkdownView uid={uid} content={content}/>
                 </View>
             </View>
-            <FAB icon="pencil" style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
-            <FAB icon="delete" style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={80}/>
+            <FAB icon={require("../assets/images/pencil.png")} color={theme.colors.background1} style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={80}/>
         </View>
     );
 }
@@ -82,7 +82,9 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
         },
         content: {
-            margin: "10%",
+            marginHorizontal: "6%",
+            marginTop: "3%",
+            marginBottom: "4%",
         },
         edit: {
             position: "absolute",

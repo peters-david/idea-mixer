@@ -35,7 +35,8 @@ export default function OverviewHeader(props: Props) {
 const makeStyles = (theme: CustomTheme) => {
     return StyleSheet.create({
         headerContent: {
-            marginVertical: "15%",
+            marginTop: "15%",
+            marginBottom: "3%",
             marginHorizontal: "3%",
         },
         title: {

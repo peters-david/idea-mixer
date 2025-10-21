@@ -1,3 +1,4 @@
+import IdeaMix from "@/components/IdeaMix";
 import SeedDownload from "@/components/SeedDownload";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import Overview from "@/screens/Overview";
@@ -14,6 +15,7 @@ export default function Startscreen() {
     return (
         <View>
             <SeedDownload/>
+            <IdeaMix/>
             <Overview />
         </View>
     );

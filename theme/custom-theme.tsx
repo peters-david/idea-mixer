@@ -31,6 +31,7 @@ export type CustomTheme = {
     },
     font: {
         family: string,
+        bold: string,
     },
 }
 
@@ -54,6 +55,7 @@ const theme = {
     },
     font: {
         family: "Poppins_200ExtraLight",
+        bold: "Poppins_700Bold",
     }
 };
 

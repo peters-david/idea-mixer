@@ -1,5 +1,5 @@
 import { APP_DIRECTORY } from "@/constants/app-directory";
-import { Directory, File } from "expo-file-system";
+import { Directory, File, Paths } from "expo-file-system";
 
 
 const GITHUB_OWNER = "peters-david";
@@ -15,14 +15,12 @@ export async function downloadGitRecursive(repoPath: string, localPath: string) 
     const response = await fetch(git_template_url);
     const items = await response.json();
     for (const item of items) {
-        const itemPath = localPath + item.name;
+        const itemPath = Paths.join(localPath, item.name);
         if (item.type === "dir") {
             new Directory(itemPath).create({ idempotent: true, intermediates: true });
             await downloadGitRecursive(item.path, itemPath + "/");
         } else if (item.type === "file") {
             await File.downloadFileAsync(item.download_url, new File(itemPath), { idempotent: true });
-            console.log("downloaded file");
-            console.log(itemPath);
         }
     }
 }

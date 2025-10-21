@@ -53,8 +53,8 @@ export default function EntryEdit() {
                     <TextInput multiline onChangeText={(text) => setContent(text)} style={styles.textEdit}>{content}</TextInput>
                 </View>
             </View>
-            <FAB icon="check-bold" style={styles.save} onPress={() => router.back()} customSize={80}/>
-            <FAB icon="delete" style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={80}/>
+            <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={80}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={80}/>
         </View>
     );
 }
@@ -124,7 +124,9 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
         },
         content: {
-            margin: "10%",
+            marginHorizontal: "6%",
+            marginTop: "3%",
+            marginBottom: "4%",
         },
         textEdit: {
             fontFamily: theme.font.family,

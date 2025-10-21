@@ -54,7 +54,8 @@ const makeStyles = (theme: CustomTheme) => {
     return StyleSheet.create({
         preview: {
             backgroundColor: theme.colors.background1,
-            paddingHorizontal: "5%",
+            paddingLeft: "5%",
+            paddingRight: "1%",
             paddingVertical: "3%",
             borderRadius: theme.corners.radius,
             marginVertical: "1%",

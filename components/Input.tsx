@@ -42,6 +42,7 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
             borderWidth: 0,
             paddingTop: 3,
+            marginLeft: 50,
         },
         border: {
             backgroundColor: theme.colors.background1,
