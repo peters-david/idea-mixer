@@ -80,7 +80,7 @@ const makeStyles = (theme: CustomTheme) => {
             backgroundColor: theme.colors.background1,
             marginHorizontal: "1%",
             padding: 0,
-            borderColor: theme.colors.background2,
+            borderColor: theme.colors.darkText,
             borderRadius: theme.corners.radius,
         },
         conceptInnerText: {

@@ -44,36 +44,39 @@ export default function IdeaMix() {
             hide();
         } else {
             shuffleConcepts();
-            cannonRef.current?.start();
+            visible && cannonRef.current?.start();
         }
     }, [cannonRef.current]);
 
     return (
         <Portal>
-            <Modal visible={visible} onDismiss={hide} dismissable dismissableBackButton style={styles.modal}>
-                <View style={styles.modalInner}>
-                    <View style={styles.content}>
-                        <Text style={styles.title}>New idea?</Text>
-                        <View style={styles.mix}>
-                            <Gradient>
-                                <View style={styles.concepts}>
-                                    <Chip compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concepts.length > 0 && concepts[0]}</Text></Chip>
-                                    <Text style={styles.sign}>+</Text>
-                                    <Chip compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concepts.length > 0 && concepts[1]}</Text></Chip>
-                                </View>
-                                <View style={styles.create}>
-                                    <View style={styles.new}>
-                                        <Input pre={require("../assets/images/equals.png")} placeholder="Title" postButton="Add" onPress={createIdeaWithConcepts}/>
+            {
+                visible &&
+                <Modal visible={visible} onDismiss={hide} dismissable dismissableBackButton style={styles.modal}>
+                    <View style={styles.modalInner}>
+                        <View style={styles.content}>
+                            <Text style={styles.title}>New idea?</Text>
+                            <View style={styles.mix}>
+                                <Gradient>
+                                    <View style={styles.concepts}>
+                                        <Chip compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concepts.length > 0 && concepts[0]}</Text></Chip>
+                                        <Text style={styles.sign}>+</Text>
+                                        <Chip compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concepts.length > 0 && concepts[1]}</Text></Chip>
                                     </View>
-                                </View>
-                            </Gradient>
+                                    <View style={styles.create}>
+                                        <View style={styles.new}>
+                                            <Input pre={require("../assets/images/equals.png")} placeholder="Title" postButton="Add" onPress={createIdeaWithConcepts}/>
+                                        </View>
+                                    </View>
+                                </Gradient>
+                            </View>
+                            <Text style={styles.different}>Want something different?</Text>
+                            <Button mode="outlined" style={styles.shuffle} labelStyle={styles.shuffleLabel} onPress={shuffleConcepts}>Shuffle</Button>
+                            <Button mode="outlined" style={styles.discard} labelStyle={styles.discardLabel} onPress={hide}>Not now</Button>
                         </View>
-                        <Text style={styles.different}>Want something different?</Text>
-                        <Button mode="outlined" style={styles.shuffle} labelStyle={styles.shuffleLabel} onPress={shuffleConcepts}>Shuffle</Button>
-                        <Button mode="outlined" style={styles.discard} labelStyle={styles.discardLabel} onPress={hide}>Not now</Button>
                     </View>
-                </View>
-            </Modal>
+                </Modal>
+            }
             <ConfettiCannon autoStart={false} ref={cannonRef} count={150} origin={{ x: width / 2, y: height }} fadeOut fallSpeed={2500}/>
         </Portal>
     );
@@ -82,6 +85,7 @@ export default function IdeaMix() {
 const makeStyles = (theme: CustomTheme) => {
     return StyleSheet.create({
         modal: {
+            transitionDuration: "0ms",
         },
         modalInner: {
             width: "100%",

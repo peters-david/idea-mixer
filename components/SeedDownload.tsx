@@ -20,13 +20,18 @@ export default function SeedDownload() {
     }, []);
 
     return(
-        <Portal>
-            <Modal visible={visible} onDismiss={hideModal} dismissable dismissableBackButton style={styles.content} contentContainerStyle={styles.container}>
-                <Text style={styles.text}>Do you want to download example data from <Link href="https://github.com/peters-david/idea-mixer-template" style={styles.link}>Github</Link>?</Text>
-                <Button mode="outlined" onPress={() => {addSeedData(); hideModal()}} style={styles.button}><Text style={styles.buttonText}>Add seed data</Text></Button>
-                <Button mode="outlined" onPress={hideModal} style={styles.button}><Text style={styles.buttonText}>Close</Text></Button>
-            </Modal>
-        </Portal>
+        <>
+            {
+                visible &&
+                <Portal>
+                    <Modal visible={visible} onDismiss={hideModal} dismissable dismissableBackButton style={styles.content} contentContainerStyle={styles.container}>
+                        <Text style={styles.text}>Do you want to download example data from <Link href="https://github.com/peters-david/idea-mixer-template" style={styles.link}>Github</Link>?</Text>
+                        <Button mode="outlined" onPress={() => {addSeedData(); hideModal()}} style={styles.button}><Text style={styles.buttonText}>Add seed data</Text></Button>
+                        <Button mode="outlined" onPress={hideModal} style={styles.button}><Text style={styles.buttonText}>Close</Text></Button>
+                    </Modal>
+                </Portal>
+            }
+        </>
     );
 }
 

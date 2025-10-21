@@ -38,12 +38,15 @@ export default function MarkdownView(props: Props) {
             <Markdown style={styles.markdown} rules={rules}>
                 {props.content}
             </Markdown>
-            <Portal>
-                <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} style={{ width: "100%", height: "100%", backgroundColor: "black" }}>
-                    <Image source={{ uri: modalImageSource }} style={{ width: "100%", height: "100%", resizeMode: "contain" }}/>
-                    <Pressable onPress={() => setModalVisible(false)} style={{ position: "absolute", top: 0, right: 0, }}><Image source={require("../assets/images/delete.png")}/></Pressable>
-                </Modal>
-            </Portal>
+            {
+                modalVisible &&
+                <Portal>
+                    <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} style={{ width: "100%", height: "100%", backgroundColor: "black" }}>
+                        <Image source={{ uri: modalImageSource }} style={{ width: "100%", height: "100%", resizeMode: "contain" }}/>
+                        <Pressable onPress={() => setModalVisible(false)} style={{ position: "absolute", top: 0, right: 0, }}><Image source={require("../assets/images/delete.png")}/></Pressable>
+                    </Modal>
+                </Portal>
+            }
         </>
     );
 }

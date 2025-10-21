@@ -37,3 +37,11 @@ export const getAllConcepts = () => {
     const filteredConcepts = concepts.filter((concept, index, self) => concept.length > 0 && self.indexOf(concept) === index);
     return filteredConcepts;
 }
+
+export const copyImageToLocal = (imagePath: string, ideaUid: string) => {
+    const imageUid = uuid4();
+    const fileEnding = Paths.extname(imagePath);
+    const localImage = imageUid + fileEnding;
+    new File(imagePath).copy(new File(Paths.join(APP_DIRECTORY, ideaUid, localImage)));
+    return localImage
+}

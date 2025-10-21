@@ -1,9 +1,11 @@
 import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
-import { deleteIdea } from "@/utils/ideaHandling";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
-import { FAB, Surface } from "react-native-paper";
+import { copyImageToLocal, deleteIdea } from "@/utils/ideaHandling";
+import * as ImagePicker from 'expo-image-picker';
+import { Link, useLocalSearchParams, useRouter } from "expo-router";
+import { useState } from "react";
+import { Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, FAB, Icon, Surface } from "react-native-paper";
 import Gradient from "../components/Gradient";
 
 export default function EntryEdit() {
@@ -12,6 +14,7 @@ export default function EntryEdit() {
     const router = useRouter();
     const { uid }: { uid: string } = useLocalSearchParams();
     const [title, setTitle, concepts, setConcepts, content, setContent] = useIdea(uid);
+    const [showMarkdownHint, setShowMarkdownHint] = useState<boolean>(false);
 
     const updateConcept = (newConcept: string, index: number) => {
         const newConcepts = concepts.map((concept, i) => i === index ? newConcept : concept);
@@ -28,6 +31,17 @@ export default function EntryEdit() {
 
     const addConcept = () => {
         setConcepts([...concepts, ""]);
+    }
+
+    const pickImageAndAddToMarkdown = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ["images", "videos"],
+            quality: 1,
+        });
+        if (!result.canceled) {
+            const localImage = copyImageToLocal(result.assets[0].uri, uid);
+            setContent(content + `\n![Image Name](${localImage})`);
+        }
     }
 
     return (
@@ -53,6 +67,24 @@ export default function EntryEdit() {
                     <TextInput multiline onChangeText={(text) => setContent(text)} style={styles.textEdit}>{content}</TextInput>
                 </View>
             </View>
+            <Button mode="outlined" style={styles.addImage} onPress={async () => await pickImageAndAddToMarkdown()}><Text style={styles.addImageText}>Add image</Text></Button>
+            <Pressable onPress={() => setShowMarkdownHint(!showMarkdownHint)}>
+                <View style={styles.markdownHint}>
+                    <Icon source={require("../assets/images/info.png")} size={30} color={theme.colors.darkText}/>
+                    <Text style={styles.markdownHintTitle}>How to use markdown?</Text>
+                </View>
+                    {showMarkdownHint &&
+                    <>
+                        <Text style={styles.markdownHintText}>
+                            Markdown is a popular markup language. It can be used to style text and include links, images and more.
+                            Start by wrapping words to make them **bold**, *italic*, ~~strikethrough~~. Make lists with - and add `inline code`.
+                            Add links with [Text](http://example.com) and images with ![Text](https://example.com/images/example.png).
+                            You can also add local images by using "Add image" above. The local images markdown will be automatically added to the text.
+                        </Text>
+                        <Link href="https://www.markdownguide.org/getting-started/" style={styles.learnMore}>Learn more</Link>
+                    </>
+                    }
+            </Pressable>
             <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={80}/>
             <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={80}/>
         </View>
@@ -136,6 +168,44 @@ const makeStyles = (theme: CustomTheme) => {
         },
         textEditOutline: {
             borderColor: "transparent",
+        },
+        addImage: {
+            backgroundColor: "transparent",
+            marginHorizontal: "3%",
+            borderRadius: theme.corners.radius,
+            borderColor: theme.colors.positive,
+        },
+        addImageText: {
+            color: theme.colors.positive,
+            fontFamily: theme.font.family,
+            lineHeight: 40,
+            fontSize: 30,
+        },
+        markdownHint: {
+            paddingTop: 50,
+            paddingBottom: 30,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        markdownHintTitle: {
+            color: theme.colors.darkText,
+            fontFamily: theme.font.family,
+            fontSize: 20,
+            margin: 10,
+        },
+        markdownHintText: {
+            color: theme.colors.darkText,
+            fontFamily: theme.font.family,
+            fontSize: 20,
+            paddingHorizontal: "10%",
+        },
+        learnMore: {
+            color: theme.colors.darkText,
+            fontFamily: theme.font.family,
+            fontSize: 30,
+            paddingHorizontal: "10%",
+            textDecorationLine: "underline",
         },
         save: {
             position: "absolute",

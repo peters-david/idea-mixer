@@ -19,7 +19,7 @@ export type CustomTheme = {
         positive: Color,
         background0: Color,
         background1: Color,
-        background2: Color,
+        darkText: Color,
         accent: {
             from: Color,
             to: Color,
@@ -43,7 +43,7 @@ const theme = {
         positive: green,
         background0: dark0,
         background1: dark1,
-        background2: dark2,
+        darkText: dark2,
         accent: {
             from: accentFrom,
             to: accentTo,

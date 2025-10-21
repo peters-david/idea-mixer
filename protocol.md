@@ -26,3 +26,4 @@ Make images pressable for bigger view.
 Correct router navigation and back button.
 Add dynamic idea counter. Added icons.
 Added idea mix screen with confetti.
+Added markdown hint and made it possible to add local images.
