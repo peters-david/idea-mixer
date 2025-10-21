@@ -4,7 +4,7 @@ import { copyImageToLocal, deleteIdea } from "@/utils/ideaHandling";
 import * as ImagePicker from 'expo-image-picker';
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button, FAB, Icon, Surface } from "react-native-paper";
 import Gradient from "../components/Gradient";
 
@@ -46,6 +46,7 @@ export default function EntryEdit() {
 
     return (
         <View style={styles.background}>
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.header}>
                 <Gradient>
                     <TextInput onChangeText={(text) => setTitle(text)} style={styles.title} value={title}></TextInput>
@@ -85,6 +86,8 @@ export default function EntryEdit() {
                     </>
                     }
             </Pressable>
+            <View style={{ margin: "30%" }}/>
+            </ScrollView>
             <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={80}/>
             <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={80}/>
         </View>

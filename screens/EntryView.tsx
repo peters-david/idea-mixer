@@ -2,7 +2,7 @@ import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { deleteIdea } from "@/utils/ideaHandling";
 import { router, useLocalSearchParams } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Chip, FAB, Text } from "react-native-paper";
 import Gradient from "../components/Gradient";
 import MarkdownView from "../components/MarkdownView";
@@ -16,21 +16,26 @@ export default function EntryView() {
 
     return (
         <View style={styles.background}>
-            <View style={styles.header}>
-                <Gradient>
-                    <Text style={styles.title}>{title}</Text>
-                    <View style={styles.concepts}>
-                        {concepts.map((concept) => (
-                            <Chip key={concept} compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
-                        ))}
-                    </View>
-                </Gradient>
-            </View>
-            <View style={styles.body}>
-                <View style={styles.content}>
-                    <MarkdownView uid={uid} content={content}/>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <Gradient>
+                        <Text style={styles.title}>{title}</Text>
+                        <View style={styles.concepts}>
+                            {concepts.map((concept) => (
+                                <Chip key={concept} compact style={styles.concept} elevation={5}><Text style={styles.conceptText}>{concept}</Text></Chip>
+                            ))}
+                        </View>
+                    </Gradient>
                 </View>
-            </View>
+                <View style={styles.body}>
+                    <View style={styles.content}>
+                        <MarkdownView uid={uid} content={content}/>
+                    </View>
+                </View>
+                {content.length === 0 &&
+                    <Text style={styles.hint}>Looks empty. Start adding content by pressing the pencil in the lower right.</Text>
+                }
+            </ScrollView>
             <FAB icon={require("../assets/images/pencil.png")} color={theme.colors.background1} style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
             <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={80}/>
         </View>
@@ -78,6 +83,7 @@ const makeStyles = (theme: CustomTheme) => {
         },
         body: {
             marginHorizontal: "3%",
+            marginBottom: "3%",
             backgroundColor: theme.colors.background1,
             borderRadius: theme.corners.radius,
         },
@@ -85,6 +91,12 @@ const makeStyles = (theme: CustomTheme) => {
             marginHorizontal: "6%",
             marginTop: "3%",
             marginBottom: "4%",
+        },
+        hint: {
+            margin: "8%",
+            fontFamily: theme.font.family,
+            color: theme.colors.darkText,
+            fontSize: 25,
         },
         edit: {
             position: "absolute",

@@ -4,17 +4,21 @@ import { useEffect, useState } from "react";
 import { useFile } from "./useFile";
 
 export function useIdea(uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void] {
-    const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "/", "title.txt"));
-    const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "/", "concepts.csv"));
+    const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "title.txt"));
+    const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     const [concepts, setConcepts] = useState<string[]>([]);
-    const [content, setContent] = useFile(Paths.join(APP_DIRECTORY, uid, "/", "content.txt"));
+    const [content, setContent] = useFile(Paths.join(APP_DIRECTORY, uid, "content.txt"));
 
     useEffect(() => {
-        setConcepts(joinedConcepts.split(","));
+        let newConcepts = joinedConcepts.split(",");
+        if (newConcepts.length === 1 && newConcepts[0].length === 0) newConcepts = [];
+        setConcepts(newConcepts);
     }, [joinedConcepts]);
 
     const updateConcepts = (concepts: string[]) => {
-        setJoinedConcepts(concepts.join(","));
+        const cleanedConcepts = concepts.filter(e => e.length > 0).join("");
+        setJoinedConcepts(cleanedConcepts);
+        setConcepts(concepts);
     }
 
     return [title, setTitle, concepts, updateConcepts, content, setContent];

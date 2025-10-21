@@ -17,6 +17,7 @@ export default function OverviewHeader(props: Props) {
     const styles = makeStyles(theme);
 
     const createIdea = (title: string) => {
+        if (title.length === 0) return;
         const uid = addIdea(title);
         router.push(`/edit/${uid}`);
     }
@@ -40,12 +41,12 @@ const makeStyles = (theme: CustomTheme) => {
             marginHorizontal: "3%",
         },
         title: {
+            alignSelf: "center",
             marginVertical: "5%",
-            marginHorizontal: "8%",
+            marginHorizontal: "6%",
             color: theme.colors.text,
             fontFamily: "Poppins_200ExtraLight",
             fontSize: 30,
-            fontWeight: "200",
         },
     })
 }

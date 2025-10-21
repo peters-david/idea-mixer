@@ -2,7 +2,7 @@ import Preview from "@/components/Preview";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import OverviewHeader from "../components/OverviewHeader";
 
 export default function Overview() {
@@ -21,12 +21,13 @@ export default function Overview() {
             <View style={styles.header}>
                 <OverviewHeader entries={ideaIds.length} onSearch={onSearch}/>
             </View>
-            <View style={styles.body}>
-                {ideaIds.map((id) => (
-                    <Preview key={id} uid={id} showIfContains={search}/>
-                ))}
-
-            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.body}>
+                    {ideaIds.map((id) => (
+                        <Preview key={id} uid={id} showIfContains={search}/>
+                    ))}
+                </View>
+            </ScrollView>
         </View>
     );
 }
