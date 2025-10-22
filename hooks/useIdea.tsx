@@ -16,7 +16,7 @@ export function useIdea(uid: string): [string, (newTitle: string) => void, strin
     }, [joinedConcepts]);
 
     const updateConcepts = (concepts: string[]) => {
-        const cleanedConcepts = concepts.filter(e => e.length > 0).join("");
+        const cleanedConcepts = concepts.filter(e => e.length > 0).map(e => e.toLowerCase()).join("");
         setJoinedConcepts(cleanedConcepts);
         setConcepts(concepts);
     }

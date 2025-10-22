@@ -9,5 +9,4 @@ export function cleanMarkdown(markdown: string): string {
                     .replace(/(\*{1,2}|_{1,2})(.*?)\1/g, "$2") // replace text stylings
                     .replace(/[>|]/g, "") // replace markers and symbols
                     .replace(/\s+/g, " ").trim(); // trim whitespace
-
 }
