@@ -43,7 +43,7 @@ export default function IdeaMix() {
         if (allConcepts.length <= 1) hide();
         shuffleConcepts();
         const timer = setTimeout(() => {
-            visible && cannonRef.current?.start();
+            if (visible) cannonRef.current?.start();
         }, 1000);
         return () => clearTimeout(timer);
     }, []);
@@ -71,8 +71,8 @@ export default function IdeaMix() {
                                 </Gradient>
                             </View>
                             <Text style={styles.different}>Want something different?</Text>
-                            <Button mode="outlined" style={styles.shuffle} labelStyle={styles.shuffleLabel} onPress={shuffleConcepts}>Shuffle</Button>
-                            <Button mode="outlined" style={styles.discard} labelStyle={styles.discardLabel} onPress={hide}>Not now</Button>
+                            <Button mode="outlined" style={styles.shuffle} labelStyle={styles.shuffleLabel} onPress={shuffleConcepts}><Text>Shuffle</Text></Button>
+                            <Button mode="outlined" style={styles.discard} labelStyle={styles.discardLabel} onPress={hide}><Text>Not now</Text></Button>
                         </View>
                     </View>
                 </Modal>

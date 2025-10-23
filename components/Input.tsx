@@ -20,8 +20,8 @@ export default function Input ({ pre, placeholder, onChangeText, postButton, onP
     
     return (
         <View style={styles.input}>
-            <TextInput left={pre ? <TextInput.Icon icon={pre}/>: ""} style={styles.basic} mode="outlined" placeholder={placeholder} onChangeText={(text) => { setText(text); onChangeText && onChangeText(text) }} contentStyle={styles.content} outlineStyle={styles.border} value={text}/>
-            { postButton && <Button mode="outlined" rippleColor="transparent" onPress={() => { onPress && onPress(text); setText("") }} style={styles.button} labelStyle={styles.buttonLabel}>{postButton}</Button> }
+            <TextInput left={pre ? <TextInput.Icon icon={pre}/>: ""} style={styles.basic} mode="outlined" placeholder={placeholder} onChangeText={(text) => { setText(text); if (onChangeText) onChangeText(text) }} contentStyle={styles.content} outlineStyle={styles.border} value={text}/>
+            { postButton && <Button mode="outlined" rippleColor="transparent" onPress={() => { if (onPress) onPress(text); setText("") }} style={styles.button} labelStyle={styles.buttonLabel}>{postButton}</Button> }
         </View>
     );
 }

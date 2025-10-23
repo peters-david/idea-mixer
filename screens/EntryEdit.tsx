@@ -34,7 +34,7 @@ export default function EntryEdit() {
     }
 
     const pickImageAndAddToMarkdown = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
+        const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ["images", "videos"],
             quality: 1,
         });
@@ -80,9 +80,9 @@ export default function EntryEdit() {
                             Markdown is a popular markup language. It can be used to style text and include links, images and more.
                             Start by wrapping words to make them **bold**, *italic*, ~~strikethrough~~. Make lists with - and add `inline code`.
                             Add links with [Text](http://example.com) and images with ![Text](https://example.com/images/example.png).
-                            You can also add local images by using "Add image" above. The local images markdown will be automatically added to the text.
+                            You can also add local images by using &quot;Add image&quot; above. The local images markdown will be automatically added to the text.
                         </Text>
-                        <Link href="https://www.markdownguide.org/getting-started/" style={styles.learnMore}>Learn more</Link>
+                        <Link href="https://www.markdownguide.org/getting-started/" style={styles.learnMore}><Text>Learn more</Text></Link>
                     </>
                     }
             </Pressable>
