@@ -25,7 +25,7 @@ export async function downloadGitRecursive(repoPath: string, localPath: string) 
     }
 }
 
-function ensure_folder(path: string) {
+export function ensure_folder(path: string) {
     const directory = new Directory(path);
     if (!directory.exists) {
         directory.create({ idempotent: true, overwrite: false, intermediates: true });

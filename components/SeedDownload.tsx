@@ -59,7 +59,7 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
         },
         buttonText:{
-            fontSize: 28,
+            fontSize: 22,
             fontFamily:theme.font.family,
             color: theme.colors.text,
         },

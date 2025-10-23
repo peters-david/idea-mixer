@@ -25,7 +25,7 @@ export default function IdeaMix() {
         const first = Math.floor(Math.random() * allConcepts.length);
         let second = Math.floor(Math.random() * allConcepts.length);
         if (first === second) {
-            second = Math.floor(Math.random() * allConcepts.length);
+            second = (first + 5) % (allConcepts.length - 1);
         }
         const firstConcept = allConcepts[first];
         const secondConcept = allConcepts[second];
@@ -40,13 +40,13 @@ export default function IdeaMix() {
     }
 
     useEffect(() => {
-        if (allConcepts.length <= 1) {
-            hide();
-        } else {
-            shuffleConcepts();
+        if (allConcepts.length <= 1) hide();
+        shuffleConcepts();
+        const timer = setTimeout(() => {
             visible && cannonRef.current?.start();
-        }
-    }, [cannonRef.current]);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Portal>
