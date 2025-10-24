@@ -1,0 +1,51 @@
+import Preview from "@/components/Preview";
+import { useIdeaIds } from "@/hooks/useIdeaIds";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
+import { useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import OverviewHeader from "../components/OverviewHeader";
+
+export default function Overview() {
+    const theme = useCustomTheme();
+    const styles = makeStyles(theme);
+
+    const [search, setSearch] = useState<string>();
+    const ideaIds = useIdeaIds();
+
+    const onSearch = (text: string) => {
+        setSearch(text);
+    }
+
+    return (
+        <View style={styles.background}>
+            <View style={styles.header}>
+                <OverviewHeader entries={ideaIds.length} onSearch={onSearch}/>
+            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.body}>
+                    {ideaIds.map((id) => (
+                        <Preview key={id} uid={id} showIfContains={search}/>
+                    ))}
+                </View>
+            </ScrollView>
+        </View>
+    );
+}
+
+const makeStyles = (theme: CustomTheme) => {
+    return StyleSheet.create({
+        background: {
+            backgroundColor: theme.colors.background0,
+            height: "100%",
+        },
+        header: {
+            borderBottomLeftRadius: theme.corners.radius,
+            borderBottomRightRadius: theme.corners.radius,
+            overflow: "hidden",
+        },
+        body: {
+            marginVertical: "3%",
+            marginHorizontal: "3%",
+        },
+    })
+}

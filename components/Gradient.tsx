@@ -1,4 +1,4 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet } from "react-native";

@@ -19,7 +19,7 @@ export type CustomTheme = {
         positive: Color,
         background0: Color,
         background1: Color,
-        background2: Color,
+        darkText: Color,
         accent: {
             from: Color,
             to: Color,
@@ -28,7 +28,11 @@ export type CustomTheme = {
     corners: {
         radius: number,
         width: number,
-    }
+    },
+    font: {
+        family: string,
+        bold: string,
+    },
 }
 
 const theme = {
@@ -39,7 +43,7 @@ const theme = {
         positive: green,
         background0: dark0,
         background1: dark1,
-        background2: dark2,
+        darkText: dark2,
         accent: {
             from: accentFrom,
             to: accentTo,
@@ -48,6 +52,10 @@ const theme = {
     corners: {
         radius: 30,
         width: 2,
+    },
+    font: {
+        family: "Poppins_200ExtraLight",
+        bold: "Poppins_700Bold",
     }
 };
 

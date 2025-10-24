@@ -1,5 +1,5 @@
-import { CustomTheme, useCustomTheme } from "@/constants/custom-theme";
-import React from "react";
+import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
@@ -8,17 +8,20 @@ import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 type Props = {
     pre?: IconSource;
     placeholder: string;
+    onChangeText?: (text: string) => void;
     postButton?: string;
+    onPress?: (text: string) => void;
 };
 
-export default function Input ({ pre, placeholder, postButton }: Props) {
+export default function Input ({ pre, placeholder, onChangeText, postButton, onPress }: Props) {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
+    const [text, setText] = useState<string>("");
     
     return (
         <View style={styles.input}>
-            <TextInput left={pre ? <TextInput.Icon icon={pre}/>: ""} style={styles.basic} mode="outlined" placeholder={placeholder} contentStyle={styles.content} outlineStyle={styles.border}/>
-            { postButton && <Button mode="outlined" style={styles.button} labelStyle={styles.buttonLabel}>{postButton}</Button> }
+            <TextInput left={pre ? <TextInput.Icon icon={pre}/>: ""} style={styles.basic} mode="outlined" placeholder={placeholder} onChangeText={(text) => { setText(text); if (onChangeText) onChangeText(text) }} contentStyle={styles.content} outlineStyle={styles.border} value={text}/>
+            { postButton && <Button mode="outlined" rippleColor="transparent" onPress={() => { if (onPress) onPress(text); setText("") }} style={styles.button} labelStyle={styles.buttonLabel}>{postButton}</Button> }
         </View>
     );
 }
@@ -30,13 +33,16 @@ const makeStyles = (theme: CustomTheme) => {
         },
         basic: {
             width: "100%",
-            fontSize: 24,
             margin: 1,
         },
         content: {
-            color: theme.colors.background2,
+            color: theme.colors.text,
+            fontFamily: theme.font.family,
+            fontSize: 24,
             borderRadius: theme.corners.radius,
             borderWidth: 0,
+            paddingTop: 3,
+            marginLeft: 50,
         },
         border: {
             backgroundColor: theme.colors.background1,
@@ -49,16 +55,15 @@ const makeStyles = (theme: CustomTheme) => {
             height: "96%",
             right: 0,
             justifyContent: "center",
-            paddingHorizontal: 35,
             borderWidth: 2,
             borderColor: theme.colors.accent.from,
             borderRadius: theme.corners.radius,
-            marginVertical: 1,
         },
         buttonLabel: {
+            paddingHorizontal: 35,
+            fontFamily: theme.font.family,
             fontSize: 24,
             color: theme.colors.text,
-            fontWeight: "200",
         }
     })
 }
