@@ -34,6 +34,12 @@ module.exports = defineConfig([{
         globals: {
             ...globals.node,
             ...reactNative.environments["react-native"]["react-native"],
+            jest: "readonly",
+            describe: "readonly",
+            test: "readonly",
+            expect: "readonly",
+            beforeEach: "readonly",
+            afterEach: "readonly",
         },
     },
 

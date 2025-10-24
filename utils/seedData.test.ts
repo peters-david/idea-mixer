@@ -1,20 +1,7 @@
-jest.mock("expo-file-system", () => {
-    return {
-        Directory: jest.fn().mockImplementation((path: string) => ({
-            exists: jest.fn(),
-            create: jest.fn(),
-        })),
-        Paths: {
-            document: "/mock",
-            join: jest.fn((...args) => args.join("/"))
-        },
-    };
-});
-
 import { Directory } from "expo-file-system";
-import { ensure_folder } from "./seedData";
+import { ensureFolder } from "./seedData";
 
-describe("ensure_folder", () => {
+describe("ensureFolder", () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
@@ -26,7 +13,7 @@ describe("ensure_folder", () => {
             create: mockCreate,
         }));
 
-        ensure_folder("path");
+        ensureFolder("path");
         expect(mockCreate).not.toHaveBeenCalled();
     });
 
@@ -37,7 +24,7 @@ describe("ensure_folder", () => {
             create: mockCreate,
         }));
 
-        ensure_folder("path");
+        ensureFolder("path");
         expect(mockCreate).toHaveBeenCalled();
     });
 });

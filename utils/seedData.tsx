@@ -6,7 +6,7 @@ const GITHUB_OWNER = "peters-david";
 const REPO_NAME = "idea-mixer-template";
 
 export async function addSeedData() {
-    ensure_folder(APP_DIRECTORY);
+    ensureFolder(APP_DIRECTORY);
     downloadGitRecursive("", APP_DIRECTORY);
 }
 
@@ -25,7 +25,7 @@ export async function downloadGitRecursive(repoPath: string, localPath: string) 
     }
 }
 
-export function ensure_folder(path: string) {
+export function ensureFolder(path: string) {
     const directory = new Directory(path);
     if (!directory.exists) {
         directory.create({ idempotent: true, overwrite: false, intermediates: true });

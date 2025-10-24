@@ -14,8 +14,10 @@ export const addIdea = (title: string): string => {
 
 export const deleteIdea = (uid: string) => {
     const directory = new Directory(Paths.join(APP_DIRECTORY, uid));
-    while (directory.exists) {
+    let i = 5;
+    while (directory.exists && i > 0) {
         directory.delete();
+        i--;
     }
 }
 

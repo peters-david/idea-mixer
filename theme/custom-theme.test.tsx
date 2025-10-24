@@ -14,14 +14,16 @@ const TestComponent = () => {
     );
 };
 
-test("provides color, font, and corner radius", () => {
-    const { getByText } = render(
-        <CustomThemeProvider>
-            <TestComponent/>
-        </CustomThemeProvider>
-    );
+describe("useCustomTheme", () => {
+    test("provides color, font, and corner radius", () => {
+        const { getByText } = render(
+            <CustomThemeProvider>
+                <TestComponent/>
+            </CustomThemeProvider>
+        );
 
-    expect(getByText("white")).toBeTruthy();
-    expect(getByText("Poppins_200ExtraLight")).toBeTruthy();
-    expect(getByText("30")).toBeTruthy();
+        expect(getByText("white")).toBeTruthy();
+        expect(getByText("Poppins_200ExtraLight")).toBeTruthy();
+        expect(getByText("30")).toBeTruthy();
+    });
 });
