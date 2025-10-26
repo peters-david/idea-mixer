@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { Dimensions } from "react-native";
 
 const accentFrom = "#6059FE";
 const accentTo = "#393598";
@@ -8,6 +9,14 @@ const dark2 = "#4f5056";
 const red = "#F54B64";
 const yellow = "#F7AC61";
 const green = "#77884B";
+
+const { height } = Dimensions.get("window");
+const s1 = height * 0.05;
+const s2 = height * 0.03;
+const s3 = height * 0.025;
+const s4 = height * 0.02;
+
+const fab = height * 0.08;
 
 type Color = string;
 
@@ -32,6 +41,12 @@ export type CustomTheme = {
     font: {
         family: string,
         bold: string,
+        size: {
+            s1: number,
+            s2: number,
+            s3: number,
+            s4: number,
+        },
     },
 }
 
@@ -56,6 +71,13 @@ const theme = {
     font: {
         family: "Poppins_200ExtraLight",
         bold: "Poppins_700Bold",
+        size: {
+            s1: s1,
+            s2: s2,
+            s3: s3,
+            s4: s4,
+            fab: fab,
+        },
     }
 };
 

@@ -1,4 +1,4 @@
-import { getAllIdeaUids } from "@/utils/ideaHandling";
+import { getAllIdeaUidsSorted } from "@/utils/ideaHandling";
 import { useEffect, useState } from "react";
 
 export function useIdeaIds() {
@@ -6,7 +6,7 @@ export function useIdeaIds() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const ids = getAllIdeaUids();
+            const ids = getAllIdeaUidsSorted();
             setIdeaIds(ids);
         }, 3000);
         return () => clearInterval(interval);

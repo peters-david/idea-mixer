@@ -43,7 +43,7 @@ export default function IdeaMix() {
         if (allConcepts.length <= 1) hide();
         shuffleConcepts();
         const timer = setTimeout(() => {
-            if (visible) cannonRef.current?.start();
+            if (visible && allConcepts.length > 1) cannonRef.current?.start();
         }, 1000);
         return () => clearTimeout(timer);
     }, []);
@@ -100,7 +100,7 @@ const makeStyles = (theme: CustomTheme) => {
         title: {
             alignSelf: "center",
             fontFamily: theme.font.family,
-            fontSize: 50,
+            fontSize: theme.font.size.s1,
             color: theme.colors.text,
             marginBottom: "8%",
         },
@@ -124,16 +124,16 @@ const makeStyles = (theme: CustomTheme) => {
             backgroundColor: theme.colors.background1,
         },
         conceptText: {
-            fontSize: 20,
-            lineHeight: 28,
+            fontSize: theme.font.size.s4,
+            lineHeight: theme.font.size.s3,
             fontFamily: theme.font.family,
             color: theme.colors.text,
         },
         sign: {
-            fontSize: 50,
+            fontSize: theme.font.size.s1,
             fontFamily: theme.font.bold,
             color: theme.colors.text,
-            lineHeight: 50,
+            lineHeight: theme.font.size.s1,
         },
         create: {
             flexDirection: "row",
@@ -146,7 +146,7 @@ const makeStyles = (theme: CustomTheme) => {
         },
         different: {
             color: theme.colors.text,
-            fontSize: 30,
+            fontSize: theme.font.size.s2,
             fontFamily: theme.font.family,
             alignSelf: "center",
             marginTop: 80,
@@ -160,8 +160,8 @@ const makeStyles = (theme: CustomTheme) => {
         shuffleLabel: {
             color: theme.colors.text,
             fontFamily: theme.font.family,
-            fontSize: 25,
-            lineHeight: 25,
+            fontSize: theme.font.size.s3,
+            lineHeight: theme.font.size.s3,
         },
         discard: {
             width: "50%",
@@ -174,8 +174,8 @@ const makeStyles = (theme: CustomTheme) => {
         discardLabel: {
             color: theme.colors.text,
             fontFamily: theme.font.family,
-            fontSize: 30,
-            lineHeight: 30,
+            fontSize: theme.font.size.s2,
+            lineHeight: theme.font.size.s2,
         },
     })
 }

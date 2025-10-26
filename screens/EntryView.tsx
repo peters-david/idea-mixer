@@ -11,7 +11,7 @@ export default function EntryView() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const { uid }: { uid: string } = useLocalSearchParams();
-    const [title, _setTitle, concepts, _setConcepts, content, _setContent] = useIdea(uid);
+    const [title, _setTitle, concepts, _setConcepts, content, _setContent, _date] = useIdea(uid);
 
 
     return (
@@ -36,8 +36,8 @@ export default function EntryView() {
                     <Text style={styles.hint}>Looks empty. Start adding content by pressing the pencil in the lower right.</Text>
                 }
             </ScrollView>
-            <FAB icon={require("../assets/images/pencil.png")} color={theme.colors.background1} style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={80}/>
-            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={80}/>
+            <FAB icon={require("../assets/images/pencil.png")} color={theme.colors.background1} style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={theme.font.size.fab}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={theme.font.size.fab}/>
         </View>
     );
 }
@@ -61,7 +61,7 @@ const makeStyles = (theme: CustomTheme) => {
             marginTop: "5%",
             marginBottom: "2%",
             padding: 0,
-            fontSize: 28,
+            fontSize: theme.font.size.s2,
         },
         concepts: {
             marginHorizontal: "5%",
@@ -76,8 +76,8 @@ const makeStyles = (theme: CustomTheme) => {
             backgroundColor: theme.colors.background1,
         },
         conceptText: {
-            fontSize: 20,
-            lineHeight: 28,
+            fontSize: theme.font.size.s4,
+            lineHeight: theme.font.size.s2,
             fontFamily: theme.font.family,
             color: theme.colors.text,
         },
@@ -96,7 +96,7 @@ const makeStyles = (theme: CustomTheme) => {
             margin: "8%",
             fontFamily: theme.font.family,
             color: theme.colors.darkText,
-            fontSize: 25,
+            fontSize: theme.font.size.s3,
         },
         edit: {
             position: "absolute",

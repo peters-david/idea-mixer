@@ -1,13 +1,15 @@
 import { APP_DIRECTORY } from "@/constants/app-directory";
+import dayjs from "dayjs";
 import { Paths } from "expo-file-system";
 import { useEffect, useState } from "react";
 import { useFile } from "./useFile";
 
-export function useIdea(uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void] {
+export function useIdea(uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void, string] {
     const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "title.txt"));
     const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     const [concepts, setConcepts] = useState<string[]>([]);
     const [content, setContent] = useFile(Paths.join(APP_DIRECTORY, uid, "content.txt"));
+    const [date, setDate] = useFile(Paths.join(APP_DIRECTORY, uid, "date.txt"));
 
     useEffect(() => {
         let newConcepts = joinedConcepts.split(",");
@@ -16,10 +18,15 @@ export function useIdea(uid: string): [string, (newTitle: string) => void, strin
     }, [joinedConcepts]);
 
     const updateConcepts = (concepts: string[]) => {
-        const cleanedConcepts = concepts.filter(e => e.length > 0).map(e => e.toLowerCase()).join("");
+        const cleanedConcepts = concepts.filter(e => e.length > 0).map(e => e.toLowerCase()).join(",");
         setJoinedConcepts(cleanedConcepts);
         setConcepts(concepts);
     }
 
-    return [title, setTitle, concepts, updateConcepts, content, setContent];
+    useEffect(() => {
+        const changeDate = dayjs().format("YYYYMMDDHHmmss");
+        setDate(changeDate);
+    }, [title, concepts, content]);
+
+    return [title, setTitle, concepts, updateConcepts, content, setContent, date];
 }

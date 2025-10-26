@@ -13,7 +13,7 @@ export default function EntryEdit() {
     const styles = makeStyles(theme);
     const router = useRouter();
     const { uid }: { uid: string } = useLocalSearchParams();
-    const [title, setTitle, concepts, setConcepts, content, setContent] = useIdea(uid);
+    const [title, setTitle, concepts, setConcepts, content, setContent, _date] = useIdea(uid);
     const [showMarkdownHint, setShowMarkdownHint] = useState<boolean>(false);
 
     const updateConcept = (newConcept: string, index: number) => {
@@ -88,8 +88,8 @@ export default function EntryEdit() {
             </Pressable>
             <View style={{ margin: "30%" }}/>
             </ScrollView>
-            <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={80}/>
-            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={80}/>
+            <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={theme.font.size.fab}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={theme.font.size.fab}/>
         </View>
     );
 }
@@ -113,7 +113,7 @@ const makeStyles = (theme: CustomTheme) => {
             marginTop: "5%",
             marginBottom: "2%",
             padding: 0,
-            fontSize: 28,
+            fontSize: theme.font.size.s2,
         },
         concepts: {
             marginHorizontal: "5%",
@@ -134,8 +134,8 @@ const makeStyles = (theme: CustomTheme) => {
             paddingVertical: 7,
             paddingLeft: 13,
             margin: 0,
-            fontSize: 20,
-            lineHeight: 28,
+            fontSize: theme.font.size.s4,
+            lineHeight: theme.font.size.s3,
             fontFamily: theme.font.family,
             color: theme.colors.text,
         },
@@ -167,7 +167,7 @@ const makeStyles = (theme: CustomTheme) => {
             fontFamily: theme.font.family,
             color: theme.colors.text,
             backgroundColor: theme.colors.background1,
-            fontSize: 18,
+            fontSize: theme.font.size.s4,
         },
         textEditOutline: {
             borderColor: "transparent",
@@ -181,8 +181,8 @@ const makeStyles = (theme: CustomTheme) => {
         addImageText: {
             color: theme.colors.positive,
             fontFamily: theme.font.family,
-            lineHeight: 40,
-            fontSize: 30,
+            lineHeight: theme.font.size.s2,
+            fontSize: theme.font.size.s2,
         },
         markdownHint: {
             paddingTop: 50,
@@ -194,19 +194,19 @@ const makeStyles = (theme: CustomTheme) => {
         markdownHintTitle: {
             color: theme.colors.darkText,
             fontFamily: theme.font.family,
-            fontSize: 20,
+            fontSize: theme.font.size.s4,
             margin: 10,
         },
         markdownHintText: {
             color: theme.colors.darkText,
             fontFamily: theme.font.family,
-            fontSize: 20,
+            fontSize: theme.font.size.s4,
             paddingHorizontal: "10%",
         },
         learnMore: {
             color: theme.colors.darkText,
             fontFamily: theme.font.family,
-            fontSize: 30,
+            fontSize: theme.font.size.s2,
             paddingHorizontal: "10%",
             textDecorationLine: "underline",
         },

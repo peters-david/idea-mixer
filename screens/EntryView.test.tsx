@@ -20,6 +20,7 @@ describe("EntryView", () => {
             jest.fn(),
             "",
             jest.fn(),
+            ""
         ]);
         const { findByText } = render(
             <PaperProvider>
@@ -40,6 +41,7 @@ describe("EntryView", () => {
             jest.fn(),
             "content",
             jest.fn(),
+            ""
         ]);
         const { findByText } = render(
             <PaperProvider>

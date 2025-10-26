@@ -47,7 +47,7 @@ const makeStyles = (theme: CustomTheme) => {
         text: {
             color: theme.colors.text,
             paddingBottom: "20%",
-            fontSize: 20,
+            fontSize: theme.font.size.s4,
             fontFamily:theme.font.family,
         },
         link: {
@@ -59,7 +59,7 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
         },
         buttonText:{
-            fontSize: 22,
+            fontSize: theme.font.size.s4,
             fontFamily:theme.font.family,
             color: theme.colors.text,
         },

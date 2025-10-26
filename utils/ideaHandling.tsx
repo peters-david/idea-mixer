@@ -25,6 +25,13 @@ export const getAllIdeaUids = () => {
     return new Directory(APP_DIRECTORY).list().map(e => e.name);
 }
 
+export const getAllIdeaUidsSorted = () => {
+    const directories = getAllIdeaUids();
+    const directoriesWithDates = directories.map(uid => { return { name: uid, date: new File(Paths.join(APP_DIRECTORY, uid, "date.txt")).textSync() }; });
+    const sortedDirectories = directoriesWithDates.sort((a, b) => Number(b.date) - Number(a.date)).map(e => e.name);
+    return sortedDirectories;
+}
+
 export const addConceptsToNewIdea = (uid: string, concepts: string[]) => {
     const file = new File(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     file.create();

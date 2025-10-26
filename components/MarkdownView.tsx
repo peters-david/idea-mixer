@@ -57,7 +57,7 @@ const makeStyles = (theme: CustomTheme) => {
             body: {
                 fontFamily: theme.font.family,
                 color: theme.colors.text,
-                fontSize: 18,
+                fontSize: theme.font.size.s4,
                 marginHorizontal: 4,
                 padding: 0,
             }

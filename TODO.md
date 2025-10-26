@@ -8,6 +8,10 @@ README with video
 bigger template and correction
 change .tsx to .ts where feasible
 at least 10 unit tests
-fix findings of resolution tests (font size as percentage, concepts overflow, fab size, cursor at correct place)
+fix findings of resolution tests (cursor at correct place, no idea mix after deletion)
 ensure typescript
 ' vs "
+build and publish
+describe test, build and publish
+code documentation
+date of change entries
