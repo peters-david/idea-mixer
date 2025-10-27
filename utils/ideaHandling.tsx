@@ -27,9 +27,18 @@ export const getAllIdeaUids = () => {
 
 export const getAllIdeaUidsSorted = () => {
     const directories = getAllIdeaUids();
-    const directoriesWithDates = directories.map(uid => { return { name: uid, date: new File(Paths.join(APP_DIRECTORY, uid, "date.txt")).textSync() }; });
+    const directoriesWithDates = directories.map(uid => { return { name: uid, date: getDate(uid) }; });
     const sortedDirectories = directoriesWithDates.sort((a, b) => Number(b.date) - Number(a.date)).map(e => e.name);
     return sortedDirectories;
+}
+
+const getDate = (uid: string) => {
+    const file = new File(Paths.join(APP_DIRECTORY, uid, "date.txt"));
+    if (file.exists) {
+        return file.textSync();
+    } else {
+        return "";
+    }
 }
 
 export const addConceptsToNewIdea = (uid: string, concepts: string[]) => {

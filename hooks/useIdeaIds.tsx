@@ -8,7 +8,7 @@ export function useIdeaIds() {
         const interval = setInterval(() => {
             const ids = getAllIdeaUidsSorted();
             setIdeaIds(ids);
-        }, 3000);
+        }, 500);
         return () => clearInterval(interval);
     }, []);
 

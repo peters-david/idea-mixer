@@ -3,7 +3,7 @@ import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { copyImageToLocal, deleteIdea } from "@/utils/ideaHandling";
 import * as ImagePicker from 'expo-image-picker';
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button, FAB, Icon, Surface } from "react-native-paper";
 import Gradient from "../components/Gradient";
@@ -12,6 +12,7 @@ export default function EntryEdit() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const router = useRouter();
+    const conceptRefs = useRef<(TextInput | null)[]>([]);
     const { uid }: { uid: string } = useLocalSearchParams();
     const [title, setTitle, concepts, setConcepts, content, setContent, _date] = useIdea(uid);
     const [showMarkdownHint, setShowMarkdownHint] = useState<boolean>(false);
@@ -30,7 +31,12 @@ export default function EntryEdit() {
     }
 
     const addConcept = () => {
+        const newLastIndex = concepts.length;
         setConcepts([...concepts, ""]);
+        setTimeout(() => {
+            conceptRefs.current[newLastIndex]?.focus();
+            TextInput.State.currentlyFocusedInput()?.focus();
+        }, 100);
     }
 
     const pickImageAndAddToMarkdown = async () => {
@@ -46,50 +52,50 @@ export default function EntryEdit() {
 
     return (
         <View style={styles.background}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.header}>
-                <Gradient>
-                    <TextInput onChangeText={(text) => setTitle(text)} style={styles.title} value={title}></TextInput>
-                    <View style={styles.concepts}>
-                        {concepts.map((concept, index) => (
-                            <Surface key={index} elevation={5} style={styles.concept}>
-                                <TextInput key={index} onChangeText={(text) => updateConcept(text, index)} style={styles.conceptText}>{concept}</TextInput>
-                                <Pressable onPress={() => deleteConcept(index)}><Image source={require("../assets/images/delete.png")} style={styles.deleteConcept}/></Pressable>
-                            </Surface>
-                        ))}
-                            <Surface elevation={5} style={styles.addConcept}>
-                                <Pressable onPress={addConcept}><Image source={require("../assets/images/add.png")} style={styles.addConceptImage}/></Pressable>
-                            </Surface>
+            <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <Gradient>
+                        <TextInput onChangeText={(text) => setTitle(text)} style={styles.title} value={title}></TextInput>
+                        <View style={styles.concepts}>
+                            {concepts.map((concept, index) => (
+                                <Surface key={index} elevation={5} style={styles.concept}>
+                                    <TextInput key={index} ref={ref => {conceptRefs.current[index] = ref}} onChangeText={(text) => updateConcept(text, index)} style={styles.conceptText}>{concept}</TextInput>
+                                    <Pressable onPress={() => deleteConcept(index)}><Image source={require("../assets/images/delete.png")} style={styles.deleteConcept}/></Pressable>
+                                </Surface>
+                            ))}
+                                <Surface elevation={5} style={styles.addConcept}>
+                                    <Pressable onPress={addConcept}><Image source={require("../assets/images/add.png")} style={styles.addConceptImage}/></Pressable>
+                                </Surface>
+                        </View>
+                    </Gradient>
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.content}>
+                        <TextInput multiline scrollEnabled={false} onChangeText={(text) => setContent(text)} style={styles.textEdit}>{content}</TextInput>
                     </View>
-                </Gradient>
-            </View>
-            <View style={styles.body}>
-                <View style={styles.content}>
-                    <TextInput multiline onChangeText={(text) => setContent(text)} style={styles.textEdit}>{content}</TextInput>
                 </View>
-            </View>
-            <Button mode="outlined" style={styles.addImage} onPress={async () => await pickImageAndAddToMarkdown()}><Text style={styles.addImageText}>Add image</Text></Button>
-            <Pressable onPress={() => setShowMarkdownHint(!showMarkdownHint)}>
-                <View style={styles.markdownHint}>
-                    <Icon source={require("../assets/images/info.png")} size={30} color={theme.colors.darkText}/>
-                    <Text style={styles.markdownHintTitle}>How to use markdown?</Text>
-                </View>
-                    {showMarkdownHint &&
-                    <>
-                        <Text style={styles.markdownHintText}>
-                            Markdown is a popular markup language. It can be used to style text and include links, images and more.
-                            Start by wrapping words to make them **bold**, *italic*, ~~strikethrough~~. Make lists with - and add `inline code`.
-                            Add links with [Text](http://example.com) and images with ![Text](https://example.com/images/example.png).
-                            You can also add local images by using &quot;Add image&quot; above. The local images markdown will be automatically added to the text.
-                        </Text>
-                        <Link href="https://www.markdownguide.org/getting-started/" style={styles.learnMore}><Text>Learn more</Text></Link>
-                    </>
-                    }
-            </Pressable>
-            <View style={{ margin: "30%" }}/>
+                <Button mode="outlined" style={styles.addImage} onPress={async () => await pickImageAndAddToMarkdown()}><Text style={styles.addImageText}>Add image</Text></Button>
+                <Pressable onPress={() => setShowMarkdownHint(!showMarkdownHint)}>
+                    <View style={styles.markdownHint}>
+                        <Icon source={require("../assets/images/info.png")} size={30} color={theme.colors.darkText}/>
+                        <Text style={styles.markdownHintTitle}>How to use markdown?</Text>
+                    </View>
+                        {showMarkdownHint &&
+                        <>
+                            <Text style={styles.markdownHintText}>
+                                Markdown is a popular markup language. It can be used to style text and include links, images and more.
+                                Start by wrapping words to make them **bold**, *italic*, ~~strikethrough~~. Make lists with - and add `inline code`.
+                                Add links with [Text](http://example.com) and images with ![Text](https://example.com/images/example.png).
+                                You can also add local images by using &quot;Add image&quot; above. The local images markdown will be automatically added to the text.
+                            </Text>
+                            <Link href="https://www.markdownguide.org/getting-started/" style={styles.learnMore}><Text>Learn more</Text></Link>
+                        </>
+                        }
+                </Pressable>
+                <View style={{ margin: "30%" }}/>
             </ScrollView>
             <FAB icon={require("../assets/images/checkmark.png")} color={theme.colors.background1} style={styles.save} onPress={() => router.back()} customSize={theme.font.size.fab}/>
-            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid) }} customSize={theme.font.size.fab}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/?mixIdeas=false"); deleteIdea(uid) }} customSize={theme.font.size.fab}/>
         </View>
     );
 }
@@ -181,7 +187,7 @@ const makeStyles = (theme: CustomTheme) => {
         addImageText: {
             color: theme.colors.positive,
             fontFamily: theme.font.family,
-            lineHeight: theme.font.size.s2,
+            lineHeight: theme.font.size.s1,
             fontSize: theme.font.size.s2,
         },
         markdownHint: {

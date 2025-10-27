@@ -1,13 +1,16 @@
 import Preview from "@/components/Preview";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
-import { useState } from "react";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import OverviewHeader from "../components/OverviewHeader";
 
 export default function Overview() {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
+
+    const scrollRef = useRef<ScrollView>(null);
 
     const [search, setSearch] = useState<string>();
     const ideaIds = useIdeaIds();
@@ -16,12 +19,18 @@ export default function Overview() {
         setSearch(text);
     }
 
+    useFocusEffect(
+        useCallback(() => {
+            scrollRef.current?.scrollTo({ y: 0, animated: false });
+        }, [])
+    );
+
     return (
         <View style={styles.background}>
             <View style={styles.header}>
                 <OverviewHeader entries={ideaIds.length} onSearch={onSearch}/>
             </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
                 <View style={styles.body}>
                     {ideaIds.map((id) => (
                         <Preview key={id} uid={id} showIfContains={search}/>

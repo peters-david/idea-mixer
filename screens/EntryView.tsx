@@ -37,7 +37,7 @@ export default function EntryView() {
                 }
             </ScrollView>
             <FAB icon={require("../assets/images/pencil.png")} color={theme.colors.background1} style={styles.edit} onPress={() => router.push(`/edit/${uid}`)} customSize={theme.font.size.fab}/>
-            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/"); deleteIdea(uid); }} customSize={theme.font.size.fab}/>
+            <FAB icon={require("../assets/images/trash.png")} color={theme.colors.background1} style={styles.delete} onPress={() => { router.push("/?mixIdeas=false"); deleteIdea(uid); }} customSize={theme.font.size.fab}/>
         </View>
     );
 }
