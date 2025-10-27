@@ -1,3 +1,5 @@
+import Gradient from "@/components/Gradient";
+import Input from "@/components/Input";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { addConceptsToNewIdea, addIdea, getAllConcepts } from "@/utils/ideaHandling";
 import { router } from "expo-router";
@@ -5,10 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import ConfettiCannon from "react-native-confetti-cannon";
 import { Button, Chip, Modal, Portal } from "react-native-paper";
-import Gradient from "./Gradient";
-import Input from "./Input";
 
-export default function IdeaMix() {
+const IdeaMix = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const allConcepts = getAllConcepts();
@@ -24,11 +24,12 @@ export default function IdeaMix() {
     const shuffleConcepts = () => {
         const first = Math.floor(Math.random() * allConcepts.length);
         let second = Math.floor(Math.random() * allConcepts.length);
-        if (first === second) {
-            second = (first + 5) % (allConcepts.length - 1);
-        }
         const firstConcept = allConcepts[first];
-        const secondConcept = allConcepts[second];
+        let secondConcept = allConcepts[second];
+        if (firstConcept === secondConcept) {
+            second = (first + 5) % (allConcepts.length - 1);
+            secondConcept = allConcepts[second];
+        }
         setConcepts([firstConcept, secondConcept]);
     }
 
@@ -179,3 +180,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default IdeaMix;

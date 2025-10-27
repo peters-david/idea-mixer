@@ -1,4 +1,4 @@
-export function cleanMarkdown(markdown: string): string {
+export const cleanMarkdown = (markdown: string): string => {
     return markdown.replace(/!\[.*?\]\(.*?\)/g, "[Image]") // replace images
                     .replace(/\[.*?\]\(.*?\)/g, "[Link]") // replace links
                     .replace(/^\s{0,3}>\s?/gm, "") // replace blockquotes

@@ -1,18 +1,18 @@
+import Gradient from "@/components/Gradient";
+import Input from "@/components/Input";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { addIdea } from "@/utils/ideaHandling";
 import { progressEmoji } from "@/utils/progressEmoji";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
-import Gradient from "./Gradient";
-import Input from "./Input";
 
 type Props = {
     entries: number;
     onSearch?: (text: string) => void;
 };
 
-export default function OverviewHeader(props: Props) {
+const OverviewHeader = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -50,3 +50,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default OverviewHeader;

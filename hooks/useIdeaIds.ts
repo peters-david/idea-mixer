@@ -1,7 +1,7 @@
 import { getAllIdeaUidsSorted } from "@/utils/ideaHandling";
 import { useEffect, useState } from "react";
 
-export function useIdeaIds() {
+export const useIdeaIds = () => {
     const [ideaIds, setIdeaIds] = useState<string[]>([]);
 
     useEffect(() => {

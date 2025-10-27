@@ -13,7 +13,7 @@ type Props = {
     onPress?: (text: string) => void;
 };
 
-export default function Input ({ pre, placeholder, onChangeText, postButton, onPress }: Props) {
+const Input = ({ pre, placeholder, onChangeText, postButton, onPress }: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const [text, setText] = useState<string>("");
@@ -68,3 +68,5 @@ const makeStyles = (theme: CustomTheme) => {
         }
     })
 }
+
+export default Input;

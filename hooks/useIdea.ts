@@ -1,10 +1,10 @@
 import { APP_DIRECTORY } from "@/constants/app-directory";
+import { useFile } from "@/hooks/useFile";
 import dayjs from "dayjs";
 import { Paths } from "expo-file-system";
 import { useEffect, useState } from "react";
-import { useFile } from "./useFile";
 
-export function useIdea(uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void, string] {
+export const useIdea = (uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void, string] => {
     const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "title.txt"));
     const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     const [concepts, setConcepts] = useState<string[]>([]);

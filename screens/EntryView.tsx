@@ -1,13 +1,13 @@
+import Gradient from "@/components/Gradient";
+import MarkdownView from "@/components/MarkdownView";
 import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { deleteIdea } from "@/utils/ideaHandling";
 import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Chip, FAB, Text } from "react-native-paper";
-import Gradient from "../components/Gradient";
-import MarkdownView from "../components/MarkdownView";
 
-export default function EntryView() {
+const EntryView = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const { uid }: { uid: string } = useLocalSearchParams();
@@ -114,3 +114,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default EntryView;

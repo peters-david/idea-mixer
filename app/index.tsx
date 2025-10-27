@@ -4,7 +4,7 @@ import Overview from "@/screens/Overview";
 import { useSearchParams } from "expo-router/build/hooks";
 import { View } from "react-native";
 
-export default function Startscreen() {
+const Startscreen = () => {
     const searchParams = useSearchParams();
     const show = !(searchParams.get("mixIdeas") === "false");
     return (
@@ -15,3 +15,5 @@ export default function Startscreen() {
         </View>
     );
 }
+
+export default Startscreen;

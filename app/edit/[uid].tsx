@@ -1,7 +1,9 @@
 import EntryEdit from "@/screens/EntryEdit";
 
-export default function Editscreen() {
+const Editscreen = () => {
     return (
         <EntryEdit />
     );
 }
+
+export default Editscreen;

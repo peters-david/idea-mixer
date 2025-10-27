@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Button, Modal, Portal } from "react-native-paper";
 
-export default function SeedDownload() {
+const SeedDownload = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -65,3 +65,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default SeedDownload;

@@ -1,14 +1,14 @@
+import Gradient from "@/components/Gradient";
 import { useIdea } from "@/hooks/useIdea";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { copyImageToLocal, deleteIdea } from "@/utils/ideaHandling";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button, FAB, Icon, Surface } from "react-native-paper";
-import Gradient from "../components/Gradient";
 
-export default function EntryEdit() {
+const EntryEdit = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const router = useRouter();
@@ -232,3 +232,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default EntryEdit;

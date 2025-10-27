@@ -11,7 +11,7 @@ type Props = {
     showIfContains?: string;
 };
 
-export default function Preview (props: Props) {
+const Preview = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -71,6 +71,7 @@ const makeStyles = (theme: CustomTheme) => {
         },
         concepts: {
             flexDirection: "row",
+            flexWrap: "wrap",
         },
         conceptText: {
             padding: 0,
@@ -94,3 +95,5 @@ const makeStyles = (theme: CustomTheme) => {
         }
     })
 }
+
+export default Preview;

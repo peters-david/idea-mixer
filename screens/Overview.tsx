@@ -1,12 +1,12 @@
+import OverviewHeader from "@/components/OverviewHeader";
 import Preview from "@/components/Preview";
 import { useIdeaIds } from "@/hooks/useIdeaIds";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import OverviewHeader from "../components/OverviewHeader";
 
-export default function Overview() {
+const Overview = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -58,3 +58,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default Overview;

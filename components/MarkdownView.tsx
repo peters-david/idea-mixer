@@ -10,7 +10,7 @@ type Props = {
     content: string,
 }
 
-export default function MarkdownView(props: Props) {
+const MarkdownView = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -69,3 +69,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     };
 }
+
+export default MarkdownView;

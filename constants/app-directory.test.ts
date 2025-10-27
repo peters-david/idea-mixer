@@ -1,5 +1,5 @@
+import { APP_DIRECTORY, ROOT_DIRECTORY, ROOT_FOLDER_NAME } from "@/constants/app-directory";
 import { Paths } from "expo-file-system";
-import { APP_DIRECTORY, ROOT_DIRECTORY, ROOT_FOLDER_NAME } from "./app-directory";
 
 describe("add directory", () => {
     test("ROOT_DIRECTORY is Paths.document", () => {

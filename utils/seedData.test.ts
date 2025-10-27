@@ -1,5 +1,5 @@
+import { ensureFolder } from "@/utils/seedData";
 import { Directory } from "expo-file-system";
-import { ensureFolder } from "./seedData";
 
 describe("ensureFolder", () => {
     beforeEach(() => {

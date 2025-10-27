@@ -1,5 +1,5 @@
+import { addConceptsToNewIdea, addIdea, deleteIdea } from "@/utils/ideaHandling";
 import { Directory, File } from "expo-file-system";
-import { addConceptsToNewIdea, addIdea, deleteIdea } from "./ideaHandling";
 
 describe("addIdea", () => {
     beforeEach(() => {

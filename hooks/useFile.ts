@@ -2,7 +2,7 @@ import { File } from "expo-file-system";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
-export function useFile(path: string): [string, (newContent: string) => void] {
+export const useFile = (path: string): [string, (newContent: string) => void] => {
     const [content, setContent] = useState<string>("");
 
     const getContent = () => {

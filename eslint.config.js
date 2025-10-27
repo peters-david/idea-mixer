@@ -68,7 +68,7 @@ module.exports = defineConfig([{
         "react/react-in-jsx-scope": "off",
         "react-native/no-inline-styles": "warn",
         "react-native/no-unused-styles": "warn",
-        'react-native/no-color-literals': 'warn',
+        "react-native/no-color-literals": "warn",
         "react-native/split-platform-components": "warn",
         "react-native/sort-styles": "off",
         "@typescript-eslint/no-require-imports": "off",
