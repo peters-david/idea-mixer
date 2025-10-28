@@ -27,6 +27,9 @@ jobs:
       - name: Run android build script
         run: yarn build-android
       
+      - name: path
+        run: pwd
+      
       - name: Rename apk
         run: mv android/app/build/outputs/apk/app-release.apk idea-mixer.apk
       

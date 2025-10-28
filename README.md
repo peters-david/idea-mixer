@@ -1,9 +1,12 @@
 # idea-mixer
 Keep track of ideas and come up with new ones by reusing existing ideas.
+projekt iu erstellt von @d
 
-What is it (videos)
+About (videos)
+logo/icon
+change github repo icon to icon
 
-Download
+Download release
 
 How to develop
     Prerequisites
