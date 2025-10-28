@@ -1,7 +1,13 @@
 # idea-mixer
 Keep track of ideas and come up with new ones by reusing existing ideas.
 
+What is it (videos)
 
+Download
+
+How to develop
+    Prerequisites
+    How to build
 
 # Tools
 - [Node](https://nodejs.org/)

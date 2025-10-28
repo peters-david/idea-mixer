@@ -125,6 +125,7 @@ const makeStyles = (theme: CustomTheme) => {
             marginHorizontal: "5%",
             marginBottom: "3%",
             flexDirection: "row",
+            flexWrap: "wrap",
             justifyContent: "flex-start",
             alignItems: "center",
         },

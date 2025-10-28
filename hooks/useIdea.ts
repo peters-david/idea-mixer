@@ -8,7 +8,7 @@ export const useIdea = (uid: string): [string, (newTitle: string) => void, strin
     const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "title.txt"));
     const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     const [concepts, setConcepts] = useState<string[]>([]);
-    const [content, setContent] = useFile(Paths.join(APP_DIRECTORY, uid, "content.txt"));
+    const [content, setContent] = useFile(Paths.join(APP_DIRECTORY, uid, "content.md"));
     const [date, setDate] = useFile(Paths.join(APP_DIRECTORY, uid, "date.txt"));
 
     useEffect(() => {

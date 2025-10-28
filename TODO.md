@@ -1,6 +1,6 @@
 remove TODO file
+remove protocol
 README with video
 ensure typescript
-build and publish
-describe test, build and publish
+documentation describe, and do test, build and publish, deployment
 code documentation
