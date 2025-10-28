@@ -24,20 +24,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: path
-        run: pwd
-      
-      - name: tree
-        run: find . -print
-      
       - name: Run android build script
         run: yarn build-android
       
-      - name: tree
-        run: find . -print
-      
       - name: Rename apk
-        run: mv android/app/build/outputs/apk/app-release.apk idea-mixer.apk
+        run: mv android/app/build/outputs/apk/release/app-release.apk idea-mixer.apk
       
       - name: Create Github release and upload apk
         uses: softprops/action-gh-release@v2
