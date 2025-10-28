@@ -30,9 +30,24 @@ jobs:
       - name: Rename apk
         run: mv android/app/build/outputs/apk/release/app-release.apk idea-mixer.apk
       
+      - name: Create a tag
+        id: tag
+        run: |
+          # Use branch name, date, short SHA as tag
+          BRANCH=${GITHUB_REF#refs/heads/}
+          DATE=$(date +%Y%m%d%H%M)
+          TAG="$BRANCH-$DATE-${GITHUB_SHA::7}"
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
+      
       - name: Create Github release and upload apk
         uses: softprops/action-gh-release@v2
         with:
+          tag: ${{ env.tag }}
+          name: "idea-mixer"
           files: idea-mixer.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
