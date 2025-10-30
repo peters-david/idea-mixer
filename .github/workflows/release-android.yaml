@@ -6,6 +6,9 @@ on:
       - main
       - polishing
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     name: Build apk and publish release
@@ -33,10 +36,9 @@ jobs:
       - name: Create a tag
         id: tag
         run: |
-          # Use branch name, date, short SHA as tag
-          BRANCH=${GITHUB_REF#refs/heads/}
+          # Use date, short SHA as tag
           DATE=$(date +%Y%m%d%H%M)
-          TAG="$BRANCH-$DATE-${GITHUB_SHA::7}"
+          TAG="$DATE-${GITHUB_SHA::7}"
           echo "TAG=$TAG" >> $GITHUB_ENV
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
