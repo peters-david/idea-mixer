@@ -37,7 +37,7 @@ jobs:
         id: tag
         run: |
           # Use date, short SHA as tag
-          DATE=$(date +%Y%m%d%H%M)
+          DATE=$(date +%Y%m%d)
           TAG="$DATE-${GITHUB_SHA::7}"
           echo "TAG=$TAG" >> $GITHUB_ENV
           git config user.name "github-actions"
@@ -48,8 +48,7 @@ jobs:
       - name: Create Github release and upload apk
         uses: softprops/action-gh-release@v2
         with:
-          tag: ${{ env.tag }}
-          name: "idea-mixer"
+          tag_name: ${{ env.tag }}
           files: idea-mixer.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

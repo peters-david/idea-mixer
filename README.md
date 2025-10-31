@@ -11,9 +11,7 @@ When starting the app a random combination of two concepts is shown. You can add
 
 ### Take a look
 <p align="center">
-    <video src="docs/new.mp4" autoplay loop muted playsinline width="250" height="500">
-        Your browser does not support the video tag.
-    </video>
+    <video src="docs/new.mp4" autoplay loop muted playsinline width="250" height="500"></video>
     <img src="docs/overview.png" width="250" height="500" alt="icon"/>
     <img src="docs/view.png" width="250" height="500" alt="icon"/>
     <img src="docs/edit.png" width="250" height="500" alt="icon"/>
