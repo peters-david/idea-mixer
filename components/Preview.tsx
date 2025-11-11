@@ -11,6 +11,10 @@ type Props = {
     showIfContains?: string;
 };
 
+/**
+ * The preview component for ideas.
+ * @returns The cleaned idea preview.
+ */
 const Preview = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

@@ -8,6 +8,10 @@ import { Dimensions, StyleSheet, Text, View } from "react-native";
 import ConfettiCannon from "react-native-confetti-cannon";
 import { Button, Chip, Modal, Portal } from "react-native-paper";
 
+/**
+ * The idea mix modal window.
+ * @returns The modal window showing a confetti cannon.
+ */
 const IdeaMix = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

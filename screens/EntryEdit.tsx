@@ -8,6 +8,10 @@ import { useRef, useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button, FAB, Icon, Surface } from "react-native-paper";
 
+/**
+ * The edit screen.
+ * @returns The component to edit an idea.
+ */
 const EntryEdit = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

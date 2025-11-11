@@ -73,5 +73,18 @@ module.exports = defineConfig([{
         "react-native/sort-styles": "off",
         "@typescript-eslint/no-require-imports": "off",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/typedef": "error",
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            { 
+                allowExpressions: true,
+                allowTypedFunctionExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowedNames: ["makeStyles"]
+            }],
     },
+},
+{
+    files: ["**/*.tsx", "**/*.jsx"],
+    rules: { "@typescript-eslint/explicit-function-return-type": "off" },
 }]);

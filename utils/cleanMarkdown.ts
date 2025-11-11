@@ -1,3 +1,9 @@
+/**
+ * A function to create a preview text out of markdown.
+ * This is needed to prevent long links and formatting to be shown as text in the preview.
+ * @param markdown - The input text.
+ * @returns The cleaned preview text.
+ */
 export const cleanMarkdown = (markdown: string): string => {
     return markdown.replace(/!\[.*?\]\(.*?\)/g, "[Image]") // replace images
                     .replace(/\[.*?\]\(.*?\)/g, "[Link]") // replace links

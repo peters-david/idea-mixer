@@ -1,7 +1,11 @@
 import { getAllIdeaUidsSorted } from "@/utils/ideaHandling";
 import { useEffect, useState } from "react";
 
-export const useIdeaIds = () => {
+/**
+ * The useIdeaIds hook.
+ * @returns Convenience functions to get and set all ids of ideas from the filesystem.
+ */
+export const useIdeaIds = (): string[] => {
     const [ideaIds, setIdeaIds] = useState<string[]>([]);
 
     useEffect(() => {

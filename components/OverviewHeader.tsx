@@ -12,6 +12,10 @@ type Props = {
     onSearch?: (text: string) => void;
 };
 
+/**
+ * The overview header.
+ * @returns The overview screen with desired search function.
+ */
 const OverviewHeader = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

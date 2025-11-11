@@ -4,6 +4,10 @@ import dayjs from "dayjs";
 import { Paths } from "expo-file-system";
 import { useEffect, useState } from "react";
 
+/**
+ * The useIdea hook.
+ * @returns Convenience functions to handle all files of a single idea.
+ */
 export const useIdea = (uid: string): [string, (newTitle: string) => void, string[], (concepts: string[]) => void, string, (newContent: string) => void, string] => {
     const [title, setTitle] = useFile(Paths.join(APP_DIRECTORY, uid, "title.txt"));
     const [joinedConcepts, setJoinedConcepts] = useFile(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
@@ -17,7 +21,7 @@ export const useIdea = (uid: string): [string, (newTitle: string) => void, strin
         setConcepts(newConcepts);
     }, [joinedConcepts]);
 
-    const updateConcepts = (concepts: string[]) => {
+    const updateConcepts = (concepts: string[]): void => {
         const cleanedConcepts = concepts.filter(e => e.length > 0).map(e => e.toLowerCase()).join(",");
         setJoinedConcepts(cleanedConcepts);
         setConcepts(concepts);

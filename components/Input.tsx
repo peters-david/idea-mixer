@@ -13,6 +13,10 @@ type Props = {
     onPress?: (text: string) => void;
 };
 
+/**
+ * The reusable input component.
+ * @returns The input component which reacts to all props.
+ */
 const Input = ({ pre, placeholder, onChangeText, postButton, onPress }: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

@@ -1,8 +1,9 @@
 import { CustomThemeProvider, useCustomTheme } from "@/theme/custom-theme";
 import { render } from "@testing-library/react-native";
+import React from "react";
 import { Text } from "react-native";
 
-const TestComponent = () => {
+const TestComponent = (): React.ReactNode => {
     const theme = useCustomTheme();
 
     return (

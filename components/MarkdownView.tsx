@@ -10,6 +10,10 @@ type Props = {
     content: string,
 }
 
+/**
+ * The markdown renderer.
+ * @returns Rendered markdown using custom render function.
+ */
 const MarkdownView = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

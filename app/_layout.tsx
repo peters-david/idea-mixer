@@ -12,6 +12,10 @@ export { ErrorBoundary } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
 
+/**
+ * The root layout.
+ * @returns The root layout nav.
+ */
 const RootLayout = () => {
   const [loaded, error] = useFonts({
     Poppins_200ExtraLight,
@@ -36,7 +40,10 @@ const RootLayout = () => {
   return <RootLayoutNav />;
 }
 
-
+/**
+ * The root layout nav.
+ * @returns The screens wrapped in theme providers.
+ */
 const RootLayoutNav = () => {
   return (
     <PaperProvider theme={theme}>

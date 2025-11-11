@@ -7,6 +7,10 @@ import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Chip, FAB, Text } from "react-native-paper";
 
+/**
+ * The view screen.
+ * @returns The component to view an idea.
+ */
 const EntryView = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

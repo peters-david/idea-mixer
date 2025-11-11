@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Button, Modal, Portal } from "react-native-paper";
 
+/**
+ * The modal to download seed data.
+ * @returns The modal window where seed data can be downloaded.
+ */
 const SeedDownload = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);

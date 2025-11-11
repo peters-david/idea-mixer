@@ -6,6 +6,10 @@ import { useFocusEffect } from "expo-router";
 import { useCallback, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
+/**
+ * The overview screen.
+ * @returns The overview component presented when opening the app.
+ */
 const Overview = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
@@ -15,7 +19,7 @@ const Overview = () => {
     const [search, setSearch] = useState<string>();
     const ideaIds = useIdeaIds();
 
-    const onSearch = (text: string) => {
+    const onSearch = (text: string): void => {
         setSearch(text);
     }
 

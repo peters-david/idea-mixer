@@ -22,7 +22,8 @@ Download the android release at [the release page](https://github.com/peters-dav
 Prerequisites:
 - [Node](https://nodejs.org/)  
 - [Yarn](https://yarnpkg.com/) (or npm, which is included in node)
-
+- Run `yarn` to install dependencies.
+---
 How to build: Run `yarn build-android`  
 How to lint: Run `yarn lint`  
 How to test: Run `yarn test`  
