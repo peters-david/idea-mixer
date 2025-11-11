@@ -68,10 +68,23 @@ module.exports = defineConfig([{
         "react/react-in-jsx-scope": "off",
         "react-native/no-inline-styles": "warn",
         "react-native/no-unused-styles": "warn",
-        'react-native/no-color-literals': 'warn',
+        "react-native/no-color-literals": "warn",
         "react-native/split-platform-components": "warn",
         "react-native/sort-styles": "off",
         "@typescript-eslint/no-require-imports": "off",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/typedef": "error",
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            { 
+                allowExpressions: true,
+                allowTypedFunctionExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowedNames: ["makeStyles"]
+            }],
     },
+},
+{
+    files: ["**/*.tsx", "**/*.jsx"],
+    rules: { "@typescript-eslint/explicit-function-return-type": "off" },
 }]);

@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Button, Modal, Portal } from "react-native-paper";
 
-export default function SeedDownload() {
+/**
+ * The modal to download seed data.
+ * @returns The modal window where seed data can be downloaded.
+ */
+const SeedDownload = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -47,7 +51,7 @@ const makeStyles = (theme: CustomTheme) => {
         text: {
             color: theme.colors.text,
             paddingBottom: "20%",
-            fontSize: 20,
+            fontSize: theme.font.size.s4,
             fontFamily:theme.font.family,
         },
         link: {
@@ -59,9 +63,11 @@ const makeStyles = (theme: CustomTheme) => {
             borderRadius: theme.corners.radius,
         },
         buttonText:{
-            fontSize: 22,
+            fontSize: theme.font.size.s4,
             fontFamily:theme.font.family,
             color: theme.colors.text,
         },
     })
 }
+
+export default SeedDownload;

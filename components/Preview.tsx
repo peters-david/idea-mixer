@@ -11,11 +11,15 @@ type Props = {
     showIfContains?: string;
 };
 
-export default function Preview (props: Props) {
+/**
+ * The preview component for ideas.
+ * @returns The cleaned idea preview.
+ */
+const Preview = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
-    const [title, _setTitle, concepts, _setConcepts, content, _setContent] = useIdea(props.uid);
+    const [title, _setTitle, concepts, _setConcepts, content, _setContent, _date] = useIdea(props.uid);
     const [preview, setPreview] = useState<string>();
 
     const contains = (text: string) => {
@@ -62,14 +66,16 @@ const makeStyles = (theme: CustomTheme) => {
         },
         previewUpper: {
             flexDirection: "row",
+            flexWrap: "wrap",
             justifyContent: "space-between",
         },
         headline: {
             fontFamily: theme.font.family,
-            fontSize: 30,
+            fontSize: theme.font.size.s2,
         },
         concepts: {
             flexDirection: "row",
+            flexWrap: "wrap",
         },
         conceptText: {
             padding: 0,
@@ -78,7 +84,8 @@ const makeStyles = (theme: CustomTheme) => {
         concept: {
             alignSelf: "flex-start",
             backgroundColor: theme.colors.background1,
-            marginHorizontal: "1%",
+            marginRight: "2%",
+            marginBottom: "3%",
             padding: 0,
             borderColor: theme.colors.darkText,
             borderRadius: theme.corners.radius,
@@ -88,8 +95,9 @@ const makeStyles = (theme: CustomTheme) => {
             color: theme.colors.text,
         },
         previewText: {
-            paddingTop: "1%",
             fontFamily: theme.font.family,
         }
     })
 }
+
+export default Preview;

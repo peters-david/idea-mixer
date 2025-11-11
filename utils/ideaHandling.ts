@@ -1,3 +1,7 @@
+/**
+ * This file contains convenience functions to handle ideas and their files.
+ */
+
 import { APP_DIRECTORY } from "@/constants/app-directory";
 import { Directory, File, Paths } from "expo-file-system";
 import "react-native-get-random-values";
@@ -12,7 +16,7 @@ export const addIdea = (title: string): string => {
     return uid;
 }
 
-export const deleteIdea = (uid: string) => {
+export const deleteIdea = (uid: string): void => {
     const directory = new Directory(Paths.join(APP_DIRECTORY, uid));
     let i = 5;
     while (directory.exists && i > 0) {
@@ -21,17 +25,33 @@ export const deleteIdea = (uid: string) => {
     }
 }
 
-export const getAllIdeaUids = () => {
+export const getAllIdeaUids = (): string[] => {
     return new Directory(APP_DIRECTORY).list().map(e => e.name);
 }
 
-export const addConceptsToNewIdea = (uid: string, concepts: string[]) => {
+export const getAllIdeaUidsSorted = (): string[] => {
+    const directories = getAllIdeaUids();
+    const directoriesWithDates = directories.map(uid => { return { name: uid, date: getDate(uid) }; });
+    const sortedDirectories = directoriesWithDates.sort((a, b) => Number(b.date) - Number(a.date)).map(e => e.name);
+    return sortedDirectories;
+}
+
+const getDate = (uid: string): string => {
+    const file = new File(Paths.join(APP_DIRECTORY, uid, "date.txt"));
+    if (file.exists) {
+        return file.textSync();
+    } else {
+        return "";
+    }
+}
+
+export const addConceptsToNewIdea = (uid: string, concepts: string[]): void => {
     const file = new File(Paths.join(APP_DIRECTORY, uid, "concepts.csv"));
     file.create();
     file.write(concepts.join(","));
 }
 
-export const getAllConcepts = () => {
+export const getAllConcepts = (): string[] => {
     const app_directory = new Directory(APP_DIRECTORY);
     if (!app_directory.exists) return [];
     const ideaUids = app_directory.list().filter((e): e is Directory => e instanceof Directory).map(d => d.name);
@@ -40,10 +60,10 @@ export const getAllConcepts = () => {
     return filteredConcepts;
 }
 
-export const copyImageToLocal = (imagePath: string, ideaUid: string) => {
+export const copyImageToLocal = (imagePath: string, ideaUid: string): string => {
     const imageUid = uuid4();
     const fileEnding = Paths.extname(imagePath);
     const localImage = imageUid + fileEnding;
     new File(imagePath).copy(new File(Paths.join(APP_DIRECTORY, ideaUid, localImage)));
-    return localImage
+    return localImage;
 }

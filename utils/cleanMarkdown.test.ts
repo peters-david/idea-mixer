@@ -1,4 +1,4 @@
-import { cleanMarkdown } from "./cleanMarkdown";
+import { cleanMarkdown } from "@/utils/cleanMarkdown";
 
 describe("cleanMarkdown", () => {
     test("return clean markdown", () => {

@@ -1,7 +1,13 @@
 import EntryView from "@/screens/EntryView";
 
-export default function ViewScreen() {
+/**
+ * The view route.
+ * @returns The entry view screen.
+ */
+const ViewScreen = () => {
     return (
         <EntryView />
     );
 }
+
+export default ViewScreen;

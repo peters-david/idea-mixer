@@ -1,8 +1,8 @@
-import { CustomThemeProvider } from '@/theme/custom-theme';
-import { render } from '@testing-library/react-native';
-import { PaperProvider } from 'react-native-paper';
-import * as hooks from "../hooks/useIdea";
-import EntryView from './EntryView';
+import * as hooks from "@/hooks/useIdea";
+import EntryView from "@/screens/EntryView";
+import { CustomThemeProvider } from "@/theme/custom-theme";
+import { render } from "@testing-library/react-native";
+import { PaperProvider } from "react-native-paper";
 
 jest.mock("../hooks/useIdea");
 const mockedHook = hooks.useIdea as jest.Mock;
@@ -20,6 +20,7 @@ describe("EntryView", () => {
             jest.fn(),
             "",
             jest.fn(),
+            ""
         ]);
         const { findByText } = render(
             <PaperProvider>
@@ -40,6 +41,7 @@ describe("EntryView", () => {
             jest.fn(),
             "content",
             jest.fn(),
+            ""
         ]);
         const { findByText } = render(
             <PaperProvider>

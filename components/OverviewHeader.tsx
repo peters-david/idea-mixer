@@ -1,18 +1,22 @@
+import Gradient from "@/components/Gradient";
+import Input from "@/components/Input";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { addIdea } from "@/utils/ideaHandling";
 import { progressEmoji } from "@/utils/progressEmoji";
 import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
-import Gradient from "./Gradient";
-import Input from "./Input";
 
 type Props = {
     entries: number;
     onSearch?: (text: string) => void;
 };
 
-export default function OverviewHeader(props: Props) {
+/**
+ * The overview header.
+ * @returns The overview screen with desired search function.
+ */
+const OverviewHeader = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -25,7 +29,7 @@ export default function OverviewHeader(props: Props) {
     return (
         <Gradient>
             <View style={styles.headerContent}>
-                <Text style={styles.title}>You have collected {props.entries} {props.entries === 1 ? "idea" : "ideas"} {progressEmoji(props.entries)}</Text>
+                <Text style={styles.title}>{props.entries} {props.entries === 1 ? "idea" : "ideas"} collected {progressEmoji(props.entries)}</Text>
                 <Input pre={require("../assets/images/search.png")} placeholder="Search ideas" onChangeText={props.onSearch}/>
                 <Input pre={require("../assets/images/plus.png")} placeholder="Title" postButton="Add" onPress={createIdea}/>
             </View>
@@ -46,7 +50,9 @@ const makeStyles = (theme: CustomTheme) => {
             marginHorizontal: "6%",
             color: theme.colors.text,
             fontFamily: "Poppins_200ExtraLight",
-            fontSize: 30,
+            fontSize: theme.font.size.s2,
         },
     })
 }
+
+export default OverviewHeader;

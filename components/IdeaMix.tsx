@@ -1,3 +1,5 @@
+import Gradient from "@/components/Gradient";
+import Input from "@/components/Input";
 import { CustomTheme, useCustomTheme } from "@/theme/custom-theme";
 import { addConceptsToNewIdea, addIdea, getAllConcepts } from "@/utils/ideaHandling";
 import { router } from "expo-router";
@@ -5,10 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import ConfettiCannon from "react-native-confetti-cannon";
 import { Button, Chip, Modal, Portal } from "react-native-paper";
-import Gradient from "./Gradient";
-import Input from "./Input";
 
-export default function IdeaMix() {
+/**
+ * The idea mix modal window.
+ * @returns The modal window showing a confetti cannon.
+ */
+const IdeaMix = () => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const allConcepts = getAllConcepts();
@@ -24,11 +28,12 @@ export default function IdeaMix() {
     const shuffleConcepts = () => {
         const first = Math.floor(Math.random() * allConcepts.length);
         let second = Math.floor(Math.random() * allConcepts.length);
-        if (first === second) {
-            second = (first + 5) % (allConcepts.length - 1);
-        }
         const firstConcept = allConcepts[first];
-        const secondConcept = allConcepts[second];
+        let secondConcept = allConcepts[second];
+        if (firstConcept === secondConcept) {
+            second = (first + 5) % (allConcepts.length - 1);
+            secondConcept = allConcepts[second];
+        }
         setConcepts([firstConcept, secondConcept]);
     }
 
@@ -43,7 +48,7 @@ export default function IdeaMix() {
         if (allConcepts.length <= 1) hide();
         shuffleConcepts();
         const timer = setTimeout(() => {
-            if (visible) cannonRef.current?.start();
+            if (visible && allConcepts.length > 1) cannonRef.current?.start();
         }, 1000);
         return () => clearTimeout(timer);
     }, []);
@@ -100,7 +105,7 @@ const makeStyles = (theme: CustomTheme) => {
         title: {
             alignSelf: "center",
             fontFamily: theme.font.family,
-            fontSize: 50,
+            fontSize: theme.font.size.s1,
             color: theme.colors.text,
             marginBottom: "8%",
         },
@@ -124,16 +129,16 @@ const makeStyles = (theme: CustomTheme) => {
             backgroundColor: theme.colors.background1,
         },
         conceptText: {
-            fontSize: 20,
-            lineHeight: 28,
+            fontSize: theme.font.size.s4,
+            lineHeight: theme.font.size.s3,
             fontFamily: theme.font.family,
             color: theme.colors.text,
         },
         sign: {
-            fontSize: 50,
+            fontSize: theme.font.size.s1,
             fontFamily: theme.font.bold,
             color: theme.colors.text,
-            lineHeight: 50,
+            lineHeight: theme.font.size.s1,
         },
         create: {
             flexDirection: "row",
@@ -146,7 +151,7 @@ const makeStyles = (theme: CustomTheme) => {
         },
         different: {
             color: theme.colors.text,
-            fontSize: 30,
+            fontSize: theme.font.size.s2,
             fontFamily: theme.font.family,
             alignSelf: "center",
             marginTop: 80,
@@ -160,8 +165,8 @@ const makeStyles = (theme: CustomTheme) => {
         shuffleLabel: {
             color: theme.colors.text,
             fontFamily: theme.font.family,
-            fontSize: 25,
-            lineHeight: 25,
+            fontSize: theme.font.size.s3,
+            lineHeight: theme.font.size.s3,
         },
         discard: {
             width: "50%",
@@ -174,8 +179,10 @@ const makeStyles = (theme: CustomTheme) => {
         discardLabel: {
             color: theme.colors.text,
             fontFamily: theme.font.family,
-            fontSize: 30,
-            lineHeight: 30,
+            fontSize: theme.font.size.s2,
+            lineHeight: theme.font.size.s2,
         },
     })
 }
+
+export default IdeaMix;

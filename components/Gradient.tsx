@@ -3,7 +3,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet } from "react-native";
 
-export default function Gradient ({ children }: { children: React.ReactNode }) {
+/**
+ * The gradient as component for reuse.
+ * @returns The gradient wrapping children components.
+ */
+const Gradient = ({ children }: { children: React.ReactNode }) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     
@@ -28,3 +32,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     })
 }
+
+export default Gradient;

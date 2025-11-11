@@ -13,7 +13,11 @@ type Props = {
     onPress?: (text: string) => void;
 };
 
-export default function Input ({ pre, placeholder, onChangeText, postButton, onPress }: Props) {
+/**
+ * The reusable input component.
+ * @returns The input component which reacts to all props.
+ */
+const Input = ({ pre, placeholder, onChangeText, postButton, onPress }: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
     const [text, setText] = useState<string>("");
@@ -38,7 +42,7 @@ const makeStyles = (theme: CustomTheme) => {
         content: {
             color: theme.colors.text,
             fontFamily: theme.font.family,
-            fontSize: 24,
+            fontSize: theme.font.size.s3,
             borderRadius: theme.corners.radius,
             borderWidth: 0,
             paddingTop: 3,
@@ -58,12 +62,15 @@ const makeStyles = (theme: CustomTheme) => {
             borderWidth: 2,
             borderColor: theme.colors.accent.from,
             borderRadius: theme.corners.radius,
+            backgroundColor: theme.colors.background1,
         },
         buttonLabel: {
             paddingHorizontal: 35,
             fontFamily: theme.font.family,
-            fontSize: 24,
+            fontSize: theme.font.size.s3,
             color: theme.colors.text,
         }
     })
 }
+
+export default Input;

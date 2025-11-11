@@ -1,4 +1,4 @@
-import { progressEmoji } from "./progressEmoji";
+import { progressEmoji } from "@/utils/progressEmoji";
 
 describe("progressEmoji", () => {
     test("return correct emoji", () => {

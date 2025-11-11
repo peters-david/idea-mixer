@@ -10,7 +10,11 @@ type Props = {
     content: string,
 }
 
-export default function MarkdownView(props: Props) {
+/**
+ * The markdown renderer.
+ * @returns Rendered markdown using custom render function.
+ */
+const MarkdownView = (props: Props) => {
     const theme = useCustomTheme();
     const styles = makeStyles(theme);
 
@@ -57,7 +61,7 @@ const makeStyles = (theme: CustomTheme) => {
             body: {
                 fontFamily: theme.font.family,
                 color: theme.colors.text,
-                fontSize: 18,
+                fontSize: theme.font.size.s4,
                 marginHorizontal: 4,
                 padding: 0,
             }
@@ -69,3 +73,5 @@ const makeStyles = (theme: CustomTheme) => {
         },
     };
 }
+
+export default MarkdownView;

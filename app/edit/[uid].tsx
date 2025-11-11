@@ -1,7 +1,13 @@
 import EntryEdit from "@/screens/EntryEdit";
 
-export default function Editscreen() {
+/**
+ * The edit route.
+ * @returns The entry edit screen.
+ */
+const Editscreen = () => {
     return (
         <EntryEdit />
     );
 }
+
+export default Editscreen;
